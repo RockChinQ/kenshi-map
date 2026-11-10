@@ -1,0 +1,25 @@
+# Kenshi 中文互动地图
+
+https://kenshi.rcpd.cc — Vite + Leaflet static site on Cloudflare Pages (project `kenshi-map`).
+
+## Data pipeline
+
+Game files are never committed (`raw/` is git-ignored). Extraction runs on a machine with Kenshi installed
+(Windows Local Dev, using MeitouClient's `Meitou.Data` readers), producing:
+
+- `raw/GUI_Map.png` — the in-game world map `GUI_Map.dds`. Projection (MeitouClient `docs/game/ui-screens.md#map`):
+  the image spans world X and Z −147456…147456, (0,0) at the centre, +X right, **+Z down**.
+- `raw/towns.raw.json` — every placed TOWN (merged leveldata layers) with type, position, EN names and
+  zh_CN names from `locale/zh_CN/zh_CN.translation`. Schema: `scripts/build_data.py` docstring.
+
+Build:
+
+```sh
+python3 scripts/make_tiles.py raw/GUI_Map.png public/tiles | tail -1 > raw/map-meta.json
+python3 scripts/build_data.py raw/towns.raw.json raw/map-meta.json
+npm run deploy   # needs CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID
+```
+
+`public/tiles/` is generated and git-ignored.
+
+Map and game content © Lo-Fi Games. Unofficial fan site.

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kenshi 中文互动地图</title>
+  <meta name="description" content="Kenshi（剑士）中文互动地图：城镇、遗迹、古代实验室、势力据点，支持中英文搜索与探索标记。" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='6' fill='%23c8a24a'/></svg>" />
+</head>
+<body>
+  <aside id="panel">
+    <header>
+      <h1>Kenshi 中文互动地图</h1>
+      <input id="search" type="search" placeholder="搜索地点（中文 / English）" autocomplete="off" />
+    </header>
+    <section id="filters"></section>
+    <section id="results"></section>
+    <footer id="meta"></footer>
+  </aside>
+  <main id="map"></main>
+  <div id="detail" hidden></div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

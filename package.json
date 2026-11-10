@@ -1,0 +1,19 @@
+{
+  "name": "kenshi-map",
+  "version": "1.0.0",
+  "description": "Kenshi 中文互动地图 — kenshi.rcpd.cc",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name kenshi-map --branch main"
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.9.22",
+    "typescript": "^7.0.2",
+    "vite": "^6.4.6"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4"
+  },
+  "private": true
+}

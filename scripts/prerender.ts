@@ -9,7 +9,8 @@ import type { Dataset } from '../src/types.ts';
 import type { Category } from '../src/categories.ts';
 import {
   SITE, SITE_NAME, HOME_META, directoryHtml, esc, placeCardHtml, placeMeta, plain, regionCardHtml, regionMeta, regionTitle,
-  type ContentCtx, type PageMeta, type RegionInfo,
+  charCardHtml, charMeta, meitouCardHtml, meitouMeta,
+  type ContentCtx, type Extras, type PageMeta, type RegionInfo,
 } from '../src/content.ts';
 
 const DIST = 'dist';
@@ -27,7 +28,8 @@ const swatch = (c: Category) => {
   const url = `url(/icons/${img.file}) center/contain no-repeat`;
   return `<b class="sw" style="background:${url},#dfdfdf;background-blend-mode:multiply;-webkit-mask:${url};mask:${url}"></b>`;
 };
-const ctx: ContentCtx = { places: data.places, regions, swatch };
+const extras: Extras | undefined = fs.existsSync(`${DIST}/data/extras.json`) ? read(`${DIST}/data/extras.json`) : undefined;
+const ctx: ContentCtx = { places: data.places, regions, swatch, extras };
 const directory = directoryHtml(ctx);
 
 function head(m: PageMeta, jsonLd: object[]) {
@@ -125,8 +127,39 @@ fs.writeFileSync(`${DIST}/404.html`, template
   .replace('<!--seo-->', '')
   .replace('<section id="results"></section>', `<section id="results">${directory}</section>`));
 
+for (const c of extras?.characters ?? []) {
+  const m = charMeta(c, ctx);
+  paths.push(page(m, charCardHtml(c, ctx), [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: plain(c.name),
+      alternateName: c.name.en,
+      description: m.description,
+      url: SITE + m.path,
+      ...(c.wiki ? { sameAs: `https://kenshi.huijiwiki.com/wiki/${encodeURIComponent(c.wiki)}` } : {}),
+    },
+    breadcrumb([[SITE_NAME, '/'], ['主要角色', '/'], [plain(c.name), m.path]]),
+  ]));
+}
+
+for (const w of extras?.meitou ?? []) {
+  const m = meitouMeta(w, ctx);
+  paths.push(page(m, meitouCardHtml(w, ctx), [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Thing',
+      name: `铭物${plain(w.weapon)}`,
+      alternateName: `Meitou ${w.weapon.en}`,
+      description: m.description,
+      url: SITE + m.path,
+    },
+    breadcrumb([[SITE_NAME, '/'], ['铭物武器', '/'], [plain(w.weapon), m.path]]),
+  ]));
+}
+
 const urls = paths
-  .map((p) => `  <url><loc>${SITE}${p}</loc><lastmod>${today}</lastmod><priority>${p === '/' ? '1.0' : p.startsWith('/r/') ? '0.8' : '0.6'}</priority></url>`)
+  .map((p) => `  <url><loc>${SITE}${p}</loc><lastmod>${today}</lastmod><priority>${p === '/' ? '1.0' : p.startsWith('/r/') || p.startsWith('/c/') || p.startsWith('/m/') ? '0.8' : '0.6'}</priority></url>`)
   .join('\n');
 fs.writeFileSync(`${DIST}/sitemap.xml`, `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
 fs.writeFileSync(`${DIST}/robots.txt`, `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);

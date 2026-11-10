@@ -19,6 +19,8 @@ python3 scripts/make_tiles.py raw/GUI_Map.png public/tiles | tail -1 > raw/map-m
 python3 scripts/build_data.py raw/towns.raw.json raw/map-meta.json
 # regions (needs the venv: uv venv .venv && uv pip install --python .venv/bin/python opencv-python-headless numpy pillow)
 .venv/bin/python scripts/build_regions.py raw/areasmap.png --names raw/regions.raw.json
+# unique characters + Meitou carriers (ROC-10 raw files; needs raw/huiji-titles.json)
+python3 scripts/build_extras.py raw/uniques.raw.json raw/meitou.raw.json raw/huiji-titles.json
 # 灰机 wiki links: page titles via a real browser (Cloudflare challenge), then tag (run after build_regions)
 # xvfb-run node tools/huiji/dump-titles.mjs  (needs playwright + /usr/bin/chromium; writes huiji-titles.json)
 python3 scripts/add_wiki.py raw/huiji-titles.json

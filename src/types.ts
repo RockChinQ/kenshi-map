@@ -8,6 +8,8 @@ export interface Place {
   x: number;
   z: number;
   desc?: I18n;
+  /** Region (BIOME_GROUP) id from the game's areasmap lookup. */
+  region?: string;
 }
 
 export interface MapMeta {

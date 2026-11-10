@@ -17,6 +17,9 @@ Build:
 ```sh
 python3 scripts/make_tiles.py raw/GUI_Map.png public/tiles | tail -1 > raw/map-meta.json
 python3 scripts/build_data.py raw/towns.raw.json raw/map-meta.json
+# regions (needs the venv: uv venv .venv && uv pip install --python .venv/bin/python opencv-python-headless numpy pillow)
+.venv/bin/python scripts/build_regions.py raw/areasmap.png --names raw/regions.raw.json
+# icons/pointers from ROC-9: copy markers/* to public/icons/, cursors/* to public/cursors/
 npm run deploy   # needs CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID
 ```
 

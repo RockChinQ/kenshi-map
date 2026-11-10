@@ -18,8 +18,8 @@ h1 { font-size: 16px; margin: 0 0 10px; color: var(--accent); letter-spacing: .5
 .hit small { margin-left: auto; color: var(--muted); font-size: 11px; }
 .empty { color: var(--muted); padding: 6px; }
 #meta { padding: 10px 14px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--line); }
-#map { flex: 1; background: #141310; }
-.leaflet-container { background: #141310; font: inherit; }
+#map { flex: 1; background: #6d7b79; }
+.leaflet-container { background: #6d7b79; font: inherit; }
 .notice { background: rgba(36,33,27,.92); border: 1px solid var(--accent); color: var(--text); padding: 8px 12px; border-radius: 4px; max-width: 280px; }
 .place-label { background: rgba(20,19,16,.8); color: var(--text); border: 0; box-shadow: none; padding: 1px 6px; font-size: 12px; }
 .place-label::before { display: none; }

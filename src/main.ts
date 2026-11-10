@@ -105,6 +105,7 @@ async function main() {
   const hidden = store.hiddenCategories();
   for (const c of CATEGORIES) {
     const count = data.places.filter((p) => c.types.includes(p.type)).length;
+    if (!count) continue;
     const label = document.createElement('label');
     label.className = 'filter';
     label.innerHTML = `<input type="checkbox" ${hidden.has(c.key) ? '' : 'checked'} /><i style="background:${c.color}"></i><span>${c.label}</span><em>${count}</em>`;

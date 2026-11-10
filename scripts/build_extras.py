@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Unique characters and Meitou-grade weapons (ROC-10 extraction) -> public/data/extras.json.
+"""Unique characters and Meitou-grade weapons (extracted from the game data) -> public/data/extras.json.
 
 usage: build_extras.py raw/uniques.raw.json raw/meitou.raw.json raw/huiji-titles.json
-Locations reference places.json ids (ROC-8 towns.raw ids). A location is "fixed" when the character leads or is a set member
+Locations reference places.json ids (towns.raw ids). A location is "fixed" when the character leads or is a set member
 of a non-conditional template (town residents, a bar's own squad, a placed building, a prison); "possible" when it only sits in a
 random recruit pool (`choosefrom list`) or behind world-state conditions; campaigns have no place.
 """

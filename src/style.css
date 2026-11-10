@@ -3,9 +3,9 @@
 html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text);
   font: 14px/1.5 system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
 body { display: flex; }
-#panel { width: 300px; flex: none; display: flex; flex-direction: column; background: var(--panel); border-right: 1px solid var(--line); z-index: 2; }
+#panel { position: relative; width: var(--panel-w, 300px); flex: none; display: flex; flex-direction: column; background: var(--panel); border-right: 1px solid var(--line); z-index: 2; }
 #panel header { padding: 14px 14px 8px; }
-h1 { font-size: 16px; margin: 0 0 10px; color: var(--accent); letter-spacing: .5px; }
+h1 { font-size: 16px; margin: 0; flex: 1; min-width: 0; color: var(--accent); letter-spacing: .5px; }
 #search { width: 100%; padding: 8px 10px; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 4px; outline: none; }
 #search:focus { border-color: var(--accent); }
 #filters { padding: 4px 14px 10px; border-bottom: 1px solid var(--line); }
@@ -65,3 +65,18 @@ a.hit { text-decoration: none; }
 #detail details summary, #results details summary { cursor: pointer; font-size: 12px; color: var(--muted); margin: 10px 6px 4px; }
 #results details summary.dir { font-weight: 600; }
 #detail { max-height: calc(100vh - 24px); overflow: auto; }
+
+.title-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.title-row .gh { color: var(--muted); display: flex; }
+.title-row .gh:hover { color: var(--text); }
+#collapse, #expand { background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 4px; width: 26px; height: 26px; font-size: 16px; line-height: 1; padding: 0; }
+#collapse:hover, #expand:hover { color: var(--text); border-color: var(--accent); }
+#expand { position: absolute; left: 12px; bottom: 32px; z-index: 1001; background: rgba(36,33,27,.92); width: 30px; height: 30px; }
+#resizer { position: absolute; top: 0; right: -3px; width: 6px; height: 100%; cursor: col-resize; z-index: 5; }
+#resizer:hover, .resizing #resizer { background: rgba(200,162,74,.45); }
+.resizing, .resizing * { user-select: none; cursor: col-resize !important; }
+.panel-collapsed #panel { display: none; }
+@media (max-width: 720px) {
+  #panel { width: 100% !important; }
+  #resizer { display: none; }
+}

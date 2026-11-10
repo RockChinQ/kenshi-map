@@ -12,6 +12,7 @@ import { CATEGORIES, categoryOf, type Category } from './categories';
 import { store } from './store';
 import { loadRegions, regionLayers, regionName, type Region } from './regions';
 import { installCursors } from './cursors';
+import { installSidebar } from './sidebar';
 import { createMap, mapLevel, toMap, toWorld } from './olmap';
 import {
   charCardHtml, charMeta, directoryHtml, locationPoint, meitouCardHtml, meitouMeta, placeCardHtml, placeMeta, regionCardHtml, regionMeta, slugOf, HOME_META,
@@ -109,6 +110,7 @@ async function main() {
   const regionById = new globalThis.Map(regions.map((r) => [r.id, r]));
   const meta = data.map ?? FALLBACK_MAP;
   const { map, view } = createMap('map', meta);
+  installSidebar(() => map.updateSize());
   const level = () => mapLevel(view.getResolution() ?? 1e9, meta);
   const hidden = store.hiddenCategories();
 
@@ -473,7 +475,7 @@ async function main() {
   });
 
   // ---- footer ----
-  $('#meta').innerHTML = `${data.places.length} 个地点${data.gameVersion ? ` · 游戏版本 ${data.gameVersion}` : ''} · 右键地图添加个人标记<br/>非官方粉丝站，游戏内容 © Lo-Fi Games<br/>作者 <a href="https://x.com/RockChinCN" target="_blank" rel="noopener">Rock Chin（X @RockChinCN）</a>`;
+  $('#meta').innerHTML = `${data.places.length} 个地点${data.gameVersion ? ` · 游戏版本 ${data.gameVersion}` : ''} · 右键地图添加个人标记<br/>非官方粉丝站，游戏内容 © Lo-Fi Games<br/>作者 <a href="https://x.com/RockChinCN" target="_blank" rel="noopener">Rock Chin（X @RockChinCN）</a> · 开源 <a href="https://github.com/RockChinQ/kenshi-map" target="_blank" rel="noopener">github.com/RockChinQ/kenshi-map</a>`;
 
   // ---- deep link: /p/<slug>/, /r/<slug>/ (and the older #p= / #r= links) ----
   if (!search.value) results.innerHTML = directoryHtml(ctx);

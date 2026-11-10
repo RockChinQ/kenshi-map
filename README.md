@@ -5,7 +5,7 @@
 An unofficial, non-commercial fan map of Kenshi with the game's own world map, marker icons, regions and official Simplified Chinese names.
 Game data is extracted with the readers of [MeitouClient](https://github.com/VlcekM/MeitouClient).
 
-作者 Rock Chin（[X @RockChinCN](https://x.com/RockChinCN)）· 代码 MIT 许可，游戏内容 © Lo-Fi Games（见 [LICENSE](LICENSE)）。
+作者 Rock Chin（[X @RockChinCN](https://x.com/RockChinCN)）· 代码 MIT 许可，游戏内容 © Lo-Fi Games（见 [LICENSE](LICENSE) 与 [NOTICE](NOTICE)）。
 
 ## Development
 

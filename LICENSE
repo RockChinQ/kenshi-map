@@ -19,11 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-This license covers the source code in this repository only. Kenshi, its world map,
-marker images, mouse pointers, names, translations and all other game content are
-© Lo-Fi Games. They are not included in this repository except for the place, region,
-character and weapon names/positions in public/data/, which are extracted from the
-game for this non-commercial fan map.

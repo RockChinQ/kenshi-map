@@ -10,6 +10,8 @@ export interface Place {
   desc?: I18n;
   /** Region (BIOME_GROUP) id from the game's areasmap lookup. */
   region?: string;
+  /** Page title on kenshi.huijiwiki.com, when one exists. */
+  wiki?: string;
 }
 
 export interface MapMeta {

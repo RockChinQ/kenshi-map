@@ -1,6 +1,6 @@
 # Kenshi 中文互动地图
 
-https://kenshi.rcpd.cc — Vite + Leaflet static site on Cloudflare Pages (project `kenshi-map`).
+https://kenshi.rcpd.cc — Vite + OpenLayers static site on Cloudflare Pages (project `kenshi-map`).
 
 ## Data pipeline
 
@@ -19,6 +19,9 @@ python3 scripts/make_tiles.py raw/GUI_Map.png public/tiles | tail -1 > raw/map-m
 python3 scripts/build_data.py raw/towns.raw.json raw/map-meta.json
 # regions (needs the venv: uv venv .venv && uv pip install --python .venv/bin/python opencv-python-headless numpy pillow)
 .venv/bin/python scripts/build_regions.py raw/areasmap.png --names raw/regions.raw.json
+# 灰机 wiki links: page titles via a real browser (Cloudflare challenge), then tag (run after build_regions)
+# xvfb-run node tools/huiji/dump-titles.mjs  (needs playwright + /usr/bin/chromium; writes huiji-titles.json)
+python3 scripts/add_wiki.py raw/huiji-titles.json
 # icons/pointers from ROC-9: copy markers/* to public/icons/, cursors/* to public/cursors/
 npm run deploy   # needs CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID
 ```

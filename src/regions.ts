@@ -1,5 +1,12 @@
-import L from 'leaflet';
+import Feature from 'ol/Feature';
+import MultiPolygon from 'ol/geom/MultiPolygon';
+import Point from 'ol/geom/Point';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+import { Fill, Stroke, Style, Text } from 'ol/style';
+import { asArray } from 'ol/color';
 import type { I18n } from './types';
+import { toMap } from './olmap';
 
 export interface Region {
   id: string;
@@ -11,6 +18,8 @@ export interface Region {
   polygons: [number, number][][][];
   /** Acidic ground / water in this region (BIOME_GROUP acidic ground / acidic water). */
   acid?: ('ground' | 'water')[];
+  /** Page title on kenshi.huijiwiki.com, when one exists. */
+  wiki?: string;
 }
 
 export async function loadRegions(): Promise<Region[]> {
@@ -25,31 +34,67 @@ export async function loadRegions(): Promise<Region[]> {
 
 export const regionName = (r: Region) => r.name.zh || r.name.en || '未命名区域';
 
-const BASE = { color: '#f1e2bf', weight: 1.2, opacity: 0.55, fillOpacity: 0.1 };
+const FONT = '600 13px system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif';
 
-/** The region fills/borders and their name labels, as two groups the caller adds to the map. */
-export function regionLayers(
-  regions: Region[],
-  toLatLng: (x: number, z: number) => L.LatLng,
-  esc: (s: string) => string,
-  onPick: (r: Region) => void,
-  onContext: (e: L.LeafletMouseEvent) => void,
-) {
-  const shapes = L.layerGroup();
-  const labels = L.layerGroup();
+function tint(hex: string, alpha: number) {
+  const [r, g, b] = asArray(hex);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+/**
+ * The region fills and borders (one layer) and their names (another, shown only while zoomed out).
+ * `hovered()` names the region under the pointer, drawn stronger.
+ */
+export function regionLayers(regions: Region[], hovered: () => string | null, showLabels: (resolution: number) => boolean) {
+  const shapes = new VectorSource();
+  const labels = new VectorSource();
+  const styles = new globalThis.Map<string, { base: Style; hot: Style }>();
+
   for (const r of regions) {
-    const latlngs = r.polygons.map((poly) => poly.map((ring) => ring.map(([x, z]) => toLatLng(x, z))));
-    const shape = L.polygon(latlngs, { ...BASE, fillColor: r.colour, bubblingMouseEvents: false, className: 'region' });
-    shape.on('mouseover', () => shape.setStyle({ fillOpacity: 0.28, opacity: 0.9 }));
-    shape.on('mouseout', () => shape.setStyle({ fillOpacity: BASE.fillOpacity, opacity: BASE.opacity }));
-    shape.on('click', () => onPick(r));
-    shape.on('contextmenu', onContext);
-    shape.addTo(shapes);
-    L.marker(toLatLng(...r.label), {
-      icon: L.divIcon({ className: 'region-label', html: `<span>${esc(regionName(r))}</span>`, iconSize: [0, 0] }),
-      interactive: false,
-      keyboard: false,
-    }).addTo(labels);
+    const geom = new MultiPolygon(r.polygons.map((poly) => poly.map((ring) => ring.map(([x, z]) => toMap(x, z)))));
+    const f = new Feature({ geometry: geom });
+    f.setId(r.id);
+    f.set('region', r);
+    shapes.addFeature(f);
+
+    const l = new Feature({ geometry: new Point(toMap(...r.label)) });
+    l.set('region', r);
+    labels.addFeature(l);
+
+    styles.set(r.id, {
+      base: new Style({ fill: new Fill({ color: tint(r.colour, 0.1) }), stroke: new Stroke({ color: 'rgba(241,226,191,0.55)', width: 1.2 }) }),
+      hot: new Style({ fill: new Fill({ color: tint(r.colour, 0.28) }), stroke: new Stroke({ color: 'rgba(241,226,191,0.95)', width: 1.6 }) }),
+    });
   }
-  return { shapes, labels };
+
+  const shapeLayer = new VectorLayer({
+    source: shapes,
+    updateWhileAnimating: true,
+    updateWhileInteracting: true,
+    style: (f) => {
+      const s = styles.get(f.getId() as string)!;
+      return hovered() === f.getId() ? s.hot : s.base;
+    },
+  });
+
+  const labelLayer = new VectorLayer({
+    source: labels,
+    declutter: true,
+    updateWhileAnimating: true,
+    updateWhileInteracting: true,
+    style: (f, resolution) => {
+      if (!showLabels(resolution)) return undefined;
+      return new Style({
+        text: new Text({
+          text: regionName(f.get('region') as Region),
+          font: FONT,
+          fill: new Fill({ color: '#f6ead0' }),
+          stroke: new Stroke({ color: 'rgba(0,0,0,0.85)', width: 3 }),
+          overflow: true,
+        }),
+      });
+    },
+  });
+
+  return { shapeLayer, labelLayer };
 }

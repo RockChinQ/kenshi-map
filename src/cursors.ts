@@ -23,9 +23,9 @@ export async function installCursors() {
   };
   const style = document.createElement('style');
   style.textContent = `
-    html, body, .leaflet-container, .leaflet-grab, .leaflet-interactive, button, label, input[type=checkbox], .hit, .region { cursor: ${css('arrow', 'default')} !important; }
+    html, body, button, label, a, input[type=checkbox], .hit, #map, .ol-viewport, .ol-viewport canvas { cursor: ${css('arrow', 'default')} !important; }
     input[type=search] { cursor: ${css('text', 'text')} !important; }
-    .leaflet-dragging .leaflet-grab, .leaflet-dragging .leaflet-container, .leaflet-dragging .leaflet-interactive { cursor: ${css('hand', 'grabbing')} !important; }
+    #map.dragging, #map.dragging .ol-viewport, #map.dragging canvas { cursor: ${css('hand', 'grabbing')} !important; }
   `;
   document.head.appendChild(style);
 }

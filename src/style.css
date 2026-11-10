@@ -19,11 +19,6 @@ h1 { font-size: 16px; margin: 0 0 10px; color: var(--accent); letter-spacing: .5
 .empty { color: var(--muted); padding: 6px; }
 #meta { padding: 10px 14px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--line); }
 #map { flex: 1; background: #6d7b79; }
-.leaflet-container { background: #6d7b79; font: inherit; }
-.notice { background: rgba(36,33,27,.92); border: 1px solid var(--accent); color: var(--text); padding: 8px 12px; border-radius: 4px; max-width: 280px; }
-.place-label { background: rgba(20,19,16,.8); color: var(--text); border: 0; box-shadow: none; padding: 1px 6px; font-size: 12px; }
-.place-label::before { display: none; }
-.mine { color: #8dcdff; font-size: 18px; line-height: 18px; text-align: center; text-shadow: 0 0 3px #000; }
 #detail { position: absolute; right: 12px; top: 12px; width: 300px; z-index: 1000; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; box-shadow: 0 4px 20px rgba(0,0,0,.5); }
 #detail h2 { margin: 0; font-size: 18px; }
 #detail .en { margin: 0 0 6px; color: var(--muted); }
@@ -39,21 +34,21 @@ h1 { font-size: 16px; margin: 0 0 10px; color: var(--accent); letter-spacing: .5
   #panel { width: 100%; height: 40%; border-right: 0; border-top: 1px solid var(--line); }
   #detail { left: 8px; right: 8px; width: auto; }
 }
-.mk { background: none; border: 0; }
-.mk span { display: block; filter: drop-shadow(0 0 1px #000) drop-shadow(0 1px 2px rgba(0,0,0,.8)); cursor: pointer; }
-.mk.explored span { opacity: .45; }
-.sw { display: inline-block; flex: none; filter: drop-shadow(0 0 1px #000); }
-.place-label { color: #dfdfdf; text-shadow: 1px 1px 0 #000; }
-.region-label { pointer-events: none; }
-.region-label span { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; color: #f6ead0; font-size: 13px; letter-spacing: 2px; font-weight: 600;
-  text-shadow: 0 0 3px #000, 0 0 6px rgba(0,0,0,.8); opacity: .85; }
-.zl-2 .region-label span { opacity: 0; }
-.zl-0 .mk span { transform: scale(.55); }
-.zl-0 .leaflet-tooltip.place-label { display: none; }
+.sw { display: inline-block; width: 20px; height: 20px; flex: none; filter: drop-shadow(0 0 1px #000); }
 .sw-region { display: inline-block; width: 14px; height: 10px; flex: none; border: 1px solid #f1e2bf; background: rgba(241,226,191,.15); }
 #detail .region-link { display: inline-block; border: 1px solid var(--accent); border-radius: 3px; padding: 0 6px; font-size: 12px; color: var(--accent); text-decoration: none; }
 #detail .region-places { max-height: 50vh; overflow: auto; margin-top: 6px; }
 #detail .tags span.acid { border-color: #b8d433; color: #d4ec5a; }
-/* The game's map levels: towns only when zoomed out, then outposts/villages/ruins/camps, points of interest when close. */
-.zl-0 .mk:not(.mk-Town) { display: none; }
-.zl-1 .mk-SmallPlace { display: none; }
+
+#map { position: relative; }
+.map-tip { background: rgba(20,19,16,.85); color: #dfdfdf; padding: 1px 6px; border-radius: 3px; font-size: 12px; white-space: nowrap; pointer-events: none; }
+.ol-attribution { font-size: 11px; }
+.ol-attribution.ol-uncollapsible { background: rgba(20,19,16,.7); border-radius: 4px 0 0 0; }
+.ol-attribution ul { color: #cfc6b3; text-shadow: none; }
+.ol-zoom { top: 12px; left: 12px; }
+.ol-zoom button { background: rgba(36,33,27,.9); color: var(--text); }
+#detail .wiki { display: inline-block; margin: 2px 0 8px; color: var(--accent); text-decoration: none; font-size: 13px; }
+#detail .wiki:hover { text-decoration: underline; }
+#meta a { color: var(--accent); text-decoration: none; }
+#meta a:hover { text-decoration: underline; }
+.ol-zoom .ol-zoom-in, .ol-zoom .ol-zoom-out { width: 30px; height: 30px; font-size: 18px; line-height: 1; border-radius: 4px; }

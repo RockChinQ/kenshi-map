@@ -31,7 +31,7 @@ function makeMap(meta: MapMeta, hasTiles: boolean) {
     crs: L.CRS.Simple,
     minZoom: 0,
     maxZoom: meta.maxZoom + 2,
-    zoomSnap: 0.25,
+    zoomSnap: 1,
     attributionControl: true,
   });
   const toLatLng = (x: number, z: number) => {
@@ -62,7 +62,10 @@ function makeMap(meta: MapMeta, hasTiles: boolean) {
   } else {
     L.rectangle(bounds, { color: '#5a5040', weight: 1, fillColor: '#2a2620', fillOpacity: 1 }).addTo(map);
   }
-  map.fitBounds(bounds);
+  // Integer zooms only (fractional ones leave seams between tiles); start at the nearest one to a whole-map fit.
+  const size = map.getSize();
+  const fit = Math.log2(Math.min(size.x, size.y) / meta.tileSize);
+  map.setView(bounds.getCenter(), Math.max(0, Math.round(fit)));
   return { map, toLatLng, toWorld };
 }
 
@@ -88,8 +91,11 @@ async function loadIcons(): Promise<Record<string, MarkerImage> | null> {
   return iconSet;
 }
 
-const maskStyle = (img: MarkerImage, w: number, h: number, colour: string) =>
-  `width:${w}px;height:${h}px;background:${colour};-webkit-mask:url(/icons/${img.file}) center/contain no-repeat;mask:url(/icons/${img.file}) center/contain no-repeat`;
+/** The game draws a marker image multiplied by its colour; the same here, keeping the image's own alpha. */
+const maskStyle = (img: MarkerImage, w: number, h: number, colour: string) => {
+  const url = `url(/icons/${img.file}) center/contain no-repeat`;
+  return `width:${w}px;height:${h}px;background:${url},${colour};background-blend-mode:multiply;-webkit-mask:${url};mask:${url}`;
+};
 
 function markerIcon(group: string, img: MarkerImage, scale: number) {
   const w = Math.round(img.w * scale);
@@ -106,8 +112,8 @@ function markerIcon(group: string, img: MarkerImage, scale: number) {
 function swatch(group: string, colour: string) {
   const img = iconSet?.[group];
   if (!img) return `<i style="background:${colour}"></i>`;
-  const h = 16;
-  const w = Math.round((img.w / img.h) * h);
+  const h = 20;
+  const w = 20;
   return `<b class="sw" style="${maskStyle(img, w, h, MARKER_COLOUR)}"></b>`;
 }
 
@@ -135,7 +141,7 @@ async function main() {
     for (const c of [...el.classList]) if (c.startsWith('zl-')) el.classList.remove(c);
     // Like the game's map levels: small markers when zoomed out, region names only while the whole land is in view.
     const z = map.getZoom();
-    el.classList.add(z < 2 ? 'zl-0' : z < 3.5 ? 'zl-1' : 'zl-2');
+    el.classList.add(z <= 2 ? 'zl-0' : z === 3 ? 'zl-1' : 'zl-2');
   };
   map.on('zoomend', zoomClass);
   zoomClass();
@@ -305,7 +311,7 @@ async function main() {
       <button class="close" aria-label="关闭">×</button>
       <h2>${esc(regionName(r))}</h2>
       ${r.name.zh && r.name.en ? `<p class="en">${esc(r.name.en)}</p>` : ''}
-      <p class="tags"><span>区域</span><span>${inside.length} 个地点</span></p>
+      <p class="tags"><span>区域</span><span>${inside.length} 个地点</span>${r.acid?.includes('ground') ? '<span class="acid">酸性地面</span>' : ''}${r.acid?.includes('water') ? '<span class="acid">酸性水域</span>' : ''}</p>
       <div class="region-places"></div>`;
     const list = detail.querySelector('.region-places')!;
     for (const p of inside) {

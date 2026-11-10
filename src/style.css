@@ -53,3 +53,7 @@ h1 { font-size: 16px; margin: 0 0 10px; color: var(--accent); letter-spacing: .5
 .sw-region { display: inline-block; width: 14px; height: 10px; flex: none; border: 1px solid #f1e2bf; background: rgba(241,226,191,.15); }
 #detail .region-link { display: inline-block; border: 1px solid var(--accent); border-radius: 3px; padding: 0 6px; font-size: 12px; color: var(--accent); text-decoration: none; }
 #detail .region-places { max-height: 50vh; overflow: auto; margin-top: 6px; }
+#detail .tags span.acid { border-color: #b8d433; color: #d4ec5a; }
+/* The game's map levels: towns only when zoomed out, then outposts/villages/ruins/camps, points of interest when close. */
+.zl-0 .mk:not(.mk-Town) { display: none; }
+.zl-1 .mk-SmallPlace { display: none; }

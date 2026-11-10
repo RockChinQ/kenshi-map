@@ -3,3 +3,5 @@ dist
 raw/
 public/tiles/
 .venv/
+public/icons/
+public/cursors/

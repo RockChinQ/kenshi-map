@@ -9,6 +9,8 @@ export interface Region {
   label: [number, number];
   /** Multipolygon: polygons of rings (outer, then holes) of world [x, z]. */
   polygons: [number, number][][][];
+  /** Acidic ground / water in this region (BIOME_GROUP acidic ground / acidic water). */
+  acid?: ('ground' | 'water')[];
 }
 
 export async function loadRegions(): Promise<Region[]> {

@@ -15,7 +15,7 @@ from PIL import Image
 
 EXTENT = 147456
 UPSCALE = 8          # work at 8x so smoothed borders follow the land, not the 1152-unit pixels
-BLUR = 13            # gaussian kernel at the upscaled size; a shared argmax keeps neighbours seamless
+BLUR = 25            # gaussian kernel at the upscaled size; a shared argmax keeps neighbours seamless
 SIMPLIFY = 1.2       # Douglas-Peucker tolerance, upscaled pixels
 MIN_AREA = 40        # drop specks (upscaled pixels^2)
 
@@ -114,6 +114,7 @@ def main():
             'name': {'en': meta.get('name_en') or '', **({'zh': meta['name_zh']} if meta.get('name_zh') else {})},
             'label': label_point(mask, n),
             'polygons': region_polys(mask, n),
+            **({'acid': [k for k in ('ground', 'water') if meta.get(f'acidic_{k}')]} if meta.get('acidic_ground') or meta.get('acidic_water') else {}),
         })
     json.dump({'regions': regions}, open(a.out, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
     tag_places(a.places, rgb, {r['colour']: r['id'] for r in regions})

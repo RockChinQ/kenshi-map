@@ -23,7 +23,9 @@ python3 scripts/build_data.py raw/towns.raw.json raw/map-meta.json
 # xvfb-run node tools/huiji/dump-titles.mjs  (needs playwright + /usr/bin/chromium; writes huiji-titles.json)
 python3 scripts/add_wiki.py raw/huiji-titles.json
 # icons/pointers from ROC-9: copy markers/* to public/icons/, cursors/* to public/cursors/
-npm run deploy   # needs CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID
+# build also prerenders /p/<slug>/ and /r/<slug>/ pages, sitemap.xml, robots.txt, 404.html (scripts/prerender.ts)
+# og.jpg: 1200x630 screenshot of the home page (git-ignored, regenerate with Playwright if the look changes)
+npm run deploy   # build + Pages deploy + IndexNow ping; needs CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID
 ```
 
 `public/tiles/` is generated and git-ignored.

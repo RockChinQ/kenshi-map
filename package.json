@@ -4,8 +4,8 @@
   "description": "Kenshi 中文互动地图 — kenshi.rcpd.cc",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "deploy": "npm run build && wrangler pages deploy dist --project-name kenshi-map --branch main"
+    "build": "tsc && vite build && node --experimental-strip-types scripts/prerender.ts",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name kenshi-map --branch main && sh scripts/indexnow.sh"
   },
   "devDependencies": {
     "typescript": "^7.0.2",
@@ -14,5 +14,6 @@
   "dependencies": {
     "ol": "^10.11.0"
   },
-  "private": true
+  "private": true,
+  "type": "module"
 }

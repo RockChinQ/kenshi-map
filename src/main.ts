@@ -13,10 +13,9 @@ import { store } from './store';
 import { loadRegions, regionLayers, regionName, type Region } from './regions';
 import { installCursors } from './cursors';
 import { createMap, mapLevel, toMap, toWorld } from './olmap';
+import { directoryHtml, placeCardHtml, placeMeta, regionCardHtml, regionMeta, slugOf, HOME_META, type ContentCtx, type PageMeta } from './content';
 
 const FALLBACK_MAP: MapMeta = { size: 8192, maxZoom: 5, tileSize: 256, extent: 147456, tileExt: 'webp' };
-
-const WIKI = 'https://kenshi.huijiwiki.com/wiki/';
 
 const $ = <T extends HTMLElement>(sel: string) => document.querySelector(sel) as T;
 
@@ -25,9 +24,6 @@ const esc = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`)
 const plain = (s?: { en: string; zh?: string }) => (s ? s.zh || s.en : '');
 
 const zh = (s?: { en: string; zh?: string }) => esc(plain(s));
-
-const wikiLink = (title?: string) =>
-  title ? `<a class="wiki" href="${WIKI}${encodeURIComponent(title)}" target="_blank" rel="noopener">灰机 wiki ↗</a>` : '';
 
 async function loadData(): Promise<Dataset> {
   try {
@@ -290,7 +286,10 @@ async function main() {
   search.addEventListener('input', () => {
     const q = search.value.trim().toLowerCase();
     results.innerHTML = '';
-    if (!q) return;
+    if (!q) {
+      results.innerHTML = directoryHtml(ctx);
+      return;
+    }
     const matches = (n: { en: string; zh?: string }) => [n.en, n.zh ?? ''].some((s) => s && s.toLowerCase().includes(q));
     const regionHits = regions.filter((r) => matches(r.name)).slice(0, 10);
     const hits = data.places.filter((p) => matches(p.name)).slice(0, 50);
@@ -305,39 +304,31 @@ async function main() {
     if (!hits.length && !regionHits.length) results.innerHTML = '<p class="empty">没有匹配的地点</p>';
   });
 
-  // ---- detail card ----
+  // ---- detail card and page URL ----
   const detail = $('#detail');
+  const ctx: ContentCtx = { places: data.places, regions, swatch, explored: (id) => store.isExplored(id) };
+
+  /** Keeps the address bar, title and description on the shown place/region, matching the prerendered page. */
+  const setPage = (m: PageMeta) => {
+    if (location.pathname !== m.path) history.replaceState(null, '', m.path);
+    document.title = m.title;
+    document.querySelector('meta[name=description]')?.setAttribute('content', m.description);
+    document.querySelector('link[rel=canonical]')?.setAttribute('href', `https://kenshi.rcpd.cc${m.path}`);
+  };
   const closeDetail = () => {
     detail.hidden = true;
-    history.replaceState(null, '', location.pathname);
+    setPage(HOME_META);
   };
 
   function select(p: Place, fly = false) {
-    const cat = categoryOf(p.type);
     if (fly) {
       const close = (2 * meta.extent) / meta.size; // native image resolution
       view.animate({ center: toMap(p.x, p.z), resolution: Math.min(view.getResolution() ?? close, close), duration: 700 });
     }
-    history.replaceState(null, '', `#p=${encodeURIComponent(p.id)}`);
-    const region = p.region ? regionById.get(p.region) : undefined;
+    setPage(placeMeta(p, ctx));
     detail.hidden = false;
-    detail.innerHTML = `
-      <button class="close" aria-label="关闭">×</button>
-      <h2>${zh(p.name)}</h2>
-      ${p.name.zh ? `<p class="en">${esc(p.name.en)}</p>` : ''}
-      <p class="tags"><span style="border-color:${cat?.color}">${cat?.label ?? '未知'}</span>${p.faction ? `<span>${zh(p.faction)}</span>` : ''}${region ? `<a class="region-link" href="#">${esc(regionName(region))}</a>` : ''}</p>
-      ${wikiLink(p.wiki)}
-      ${p.desc ? `<p class="desc">${zh(p.desc)}</p>` : ''}
-      <p class="coord">坐标 X ${Math.round(p.x)} · Z ${Math.round(p.z)}</p>
-      <div class="actions">
-        <button class="explore">${store.isExplored(p.id) ? '✓ 已探索' : '标记为已探索'}</button>
-        <button class="share">复制链接</button>
-      </div>`;
+    detail.innerHTML = placeCardHtml(p, ctx);
     detail.querySelector<HTMLButtonElement>('.close')!.onclick = closeDetail;
-    detail.querySelector<HTMLAnchorElement>('.region-link')?.addEventListener('click', (e) => {
-      e.preventDefault();
-      showRegion(region!, true);
-    });
     detail.querySelector<HTMLButtonElement>('.explore')!.onclick = () => {
       store.setExplored(p.id, !store.isExplored(p.id));
       placeLayer.changed();
@@ -354,34 +345,39 @@ async function main() {
       const ext = boundingExtent(r.polygons.flat(2).map(([x, z]) => toMap(x, z)));
       view.fit(ext, { duration: 700, padding: [60, 340, 60, 60] });
     }
-    history.replaceState(null, '', `#r=${encodeURIComponent(r.id)}`);
-    const inside = data.places.filter((p) => p.region === r.id).sort((a, b) => a.type - b.type);
+    setPage(regionMeta(r, ctx));
     detail.hidden = false;
-    detail.innerHTML = `
-      <button class="close" aria-label="关闭">×</button>
-      <h2>${esc(regionName(r))}</h2>
-      ${r.name.zh && r.name.en ? `<p class="en">${esc(r.name.en)}</p>` : ''}
-      <p class="tags"><span>区域</span><span>${inside.length} 个地点</span>${r.acid?.includes('ground') ? '<span class="acid">酸性地面</span>' : ''}${r.acid?.includes('water') ? '<span class="acid">酸性水域</span>' : ''}</p>
-      ${wikiLink(r.wiki)}
-      <div class="region-places"></div>`;
-    const list = detail.querySelector('.region-places')!;
-    for (const p of inside) {
-      const cat = categoryOf(p.type)!;
-      list.appendChild(hitButton(`${swatch(cat)}${zh(p.name)}<small>${cat.label}</small>`, () => select(p, true)));
-    }
+    detail.innerHTML = regionCardHtml(r, ctx);
     detail.querySelector<HTMLButtonElement>('.close')!.onclick = closeDetail;
   }
+
+  // Links in cards and the directory are real URLs (crawlable); in the app they open in place.
+  const placeById = new globalThis.Map(data.places.map((p) => [p.id, p]));
+  document.addEventListener('click', (e) => {
+    const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[data-p], a[data-r]');
+    if (!a || e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+    const p = a.dataset.p ? placeById.get(a.dataset.p) : undefined;
+    const r = a.dataset.r ? regionById.get(a.dataset.r) : undefined;
+    if (!p && !r) return;
+    e.preventDefault();
+    if (p) select(p, true);
+    else showRegion(r!, true);
+  });
 
   // ---- footer ----
   $('#meta').innerHTML = `${data.places.length} 个地点${data.gameVersion ? ` · 游戏版本 ${data.gameVersion}` : ''} · 右键地图添加个人标记<br/>非官方粉丝站，游戏内容 © Lo-Fi Games<br/>作者 <a href="https://x.com/RockChinCN" target="_blank" rel="noopener">Rock Chin（X @RockChinCN）</a>`;
 
-  // ---- deep link ----
-  const rm = location.hash.match(/^#r=(.+)$/);
-  const linkedRegion = rm ? regionById.get(decodeURIComponent(rm[1])) : undefined;
-  if (linkedRegion) showRegion(linkedRegion, true);
-  const pm = location.hash.match(/^#p=(.+)$/);
-  const linkedPlace = pm ? data.places.find((x) => x.id === decodeURIComponent(pm[1])) : undefined;
-  if (linkedPlace) select(linkedPlace, true);
+  // ---- deep link: /p/<slug>/, /r/<slug>/ (and the older #p= / #r= links) ----
+  if (!search.value) results.innerHTML = directoryHtml(ctx);
+  const path = location.pathname.match(/^\/([pr])\/([^/]+)\/?$/);
+  const hash = location.hash.match(/^#([pr])=(.+)$/);
+  if (path?.[1] === 'p' || hash?.[1] === 'p') {
+    const p = data.places.find((x) => (path ? slugOf(x.id) === path[2] : x.id === decodeURIComponent(hash![2])));
+    if (p) select(p, true);
+  } else if (path?.[1] === 'r' || hash?.[1] === 'r') {
+    const r = regions.find((x) => (path ? slugOf(x.id) === path[2] : x.id === decodeURIComponent(hash![2])));
+    if (r) showRegion(r, true);
+  }
 }
 
 main();

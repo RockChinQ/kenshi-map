@@ -4,7 +4,7 @@ name: Sync feedback to issues
 
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '17 * * * *'
   workflow_dispatch:
 
 permissions:

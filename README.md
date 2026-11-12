@@ -27,7 +27,7 @@ The 反馈 button (`src/feedback.ts`) posts text and up to 4 images to Cloudflar
 records go to the D1 database `kenshi-feedback` (`migrations/`), images to the R2 bucket `kenshi-feedback`.
 
 - `/admin/` lists feedback (password = Pages secret `ADMIN_TOKEN`): mark handled, delete.
-- `.github/workflows/feedback-sync.yml` runs every 10 minutes and files one issue (label `feedback`) per new feedback,
+- `.github/workflows/feedback-sync.yml` runs hourly and files one issue (label `feedback`) per new feedback,
   authenticating to `/api/sync` with the repo secret `FEEDBACK_SYNC_TOKEN` (= Pages secret `SYNC_TOKEN`).
   Issues carry the text and images only; contact details stay in the admin page.
 - Limits: 5 submissions per IP per hour, 200 per day overall, images ≤ 5 MB (PNG / JPG / GIF / WebP).

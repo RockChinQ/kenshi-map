@@ -1,0 +1,17 @@
+# Cloudflare Pages project config: the static site in dist/ plus the feedback API in functions/.
+name = "kenshi-map"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-07-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "kenshi-feedback"
+database_id = "be4b674f-4965-47ee-9b01-3d277b24b38d"
+
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "kenshi-feedback"
+
+# Secrets (wrangler pages secret put <NAME> --project-name kenshi-map):
+#   ADMIN_TOKEN  password for /admin/
+#   SYNC_TOKEN   used by .github/workflows/feedback-sync.yml (repo secret FEEDBACK_SYNC_TOKEN)

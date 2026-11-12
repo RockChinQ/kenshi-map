@@ -80,3 +80,33 @@ a.hit { text-decoration: none; }
   #panel { width: 100% !important; }
   #resizer { display: none; }
 }
+
+/* feedback button + dialog (src/feedback.ts) */
+#feedback-open { position: fixed; right: 12px; bottom: 32px; z-index: 1001; padding: 6px 14px; background: rgba(36,33,27,.92); color: var(--text); border: 1px solid var(--line); border-radius: 4px; cursor: pointer; font: inherit; }
+#feedback-open:hover { border-color: var(--accent); color: var(--accent); }
+#feedback { width: min(440px, calc(100vw - 24px)); padding: 0; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 4px 20px rgba(0,0,0,.5); }
+#feedback::backdrop { background: rgba(0,0,0,.55); }
+#feedback form { display: flex; flex-direction: column; gap: 10px; padding: 16px; }
+#feedback h2 { margin: 0; font-size: 16px; color: var(--accent); }
+#feedback .hint { margin: 0; font-size: 12px; color: var(--muted); }
+#feedback textarea, #feedback input[type=text] { width: 100%; padding: 8px 10px; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 4px; outline: none; font: inherit; resize: vertical; }
+#feedback textarea:focus, #feedback input[type=text]:focus { border-color: var(--accent); }
+#feedback .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+#feedback .pick { align-self: flex-start; padding: 4px 10px; border: 1px dashed var(--line); border-radius: 4px; color: var(--muted); cursor: pointer; font-size: 13px; }
+#feedback .pick:hover { border-color: var(--accent); color: var(--text); }
+#feedback .thumbs { display: flex; flex-wrap: wrap; gap: 8px; }
+#feedback .thumbs:empty { display: none; }
+#feedback .thumbs span { position: relative; width: 72px; height: 72px; }
+#feedback .thumbs img { width: 100%; height: 100%; object-fit: cover; border: 1px solid var(--line); border-radius: 4px; }
+#feedback .thumbs button { position: absolute; top: -6px; right: -6px; width: 20px; height: 20px; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: var(--bg); color: var(--text); line-height: 1; cursor: pointer; }
+#feedback .status { margin: 0; min-height: 1.5em; font-size: 13px; color: var(--muted); }
+#feedback .status.error { color: #e88a7a; }
+#feedback .status.ok { color: #8fdc9f; }
+#feedback .buttons { display: flex; justify-content: flex-end; gap: 8px; }
+#feedback .buttons button { padding: 6px 16px; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 4px; cursor: pointer; font: inherit; }
+#feedback .buttons .send { border-color: var(--accent); color: var(--accent); }
+#feedback .buttons button:disabled { opacity: .5; cursor: default; }
+@media (max-width: 720px) {
+  #feedback-open { bottom: calc(40% + 32px); }
+  .panel-collapsed #feedback-open { bottom: 32px; }
+}

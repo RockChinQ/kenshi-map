@@ -13,6 +13,7 @@ import { store } from './store';
 import { loadRegions, regionLayers, regionName, type Region } from './regions';
 import { installCursors } from './cursors';
 import { installSidebar } from './sidebar';
+import { installFeedback } from './feedback';
 import { createMap, mapLevel, toMap, toWorld } from './olmap';
 import {
   charCardHtml, charMeta, directoryHtml, locationPoint, meitouCardHtml, meitouMeta, placeCardHtml, placeMeta, regionCardHtml, regionMeta, slugOf, HOME_META,
@@ -111,6 +112,7 @@ async function main() {
   const meta = data.map ?? FALLBACK_MAP;
   const { map, view } = createMap('map', meta);
   installSidebar(() => map.updateSize());
+  installFeedback();
   const level = () => mapLevel(view.getResolution() ?? 1e9, meta);
   const hidden = store.hiddenCategories();
 

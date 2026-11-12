@@ -6,3 +6,5 @@ public/tiles/
 public/icons/
 public/cursors/
 public/og.jpg
+.dev.vars
+.wrangler/

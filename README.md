@@ -19,7 +19,21 @@ plain dots on an empty map. See the pipeline below to generate them from your ow
 
 ## Stack
 
-Vite + OpenLayers static site on Cloudflare Pages (project `kenshi-map`).
+Vite + OpenLayers static site on Cloudflare Pages (project `kenshi-map`), with Pages Functions + D1 + R2 for feedback.
+
+## Feedback
+
+The 反馈 button (`src/feedback.ts`) posts text and up to 4 images to Cloudflare Pages Functions in `functions/`:
+records go to the D1 database `kenshi-feedback` (`migrations/`), images to the R2 bucket `kenshi-feedback`.
+
+- `/admin/` lists feedback (password = Pages secret `ADMIN_TOKEN`): mark handled, delete.
+- `.github/workflows/feedback-sync.yml` runs every 10 minutes and files one issue (label `feedback`) per new feedback,
+  authenticating to `/api/sync` with the repo secret `FEEDBACK_SYNC_TOKEN` (= Pages secret `SYNC_TOKEN`).
+  Issues carry the text and images only; contact details stay in the admin page.
+- Limits: 5 submissions per IP per hour, 200 per day overall, images ≤ 5 MB (PNG / JPG / GIF / WebP).
+
+Local run: `npm run build && wrangler d1 execute kenshi-feedback --local --file migrations/0001_feedback.sql`,
+put `ADMIN_TOKEN` / `SYNC_TOKEN` in `.dev.vars`, then `wrangler pages dev dist`.
 
 ## Data pipeline
 

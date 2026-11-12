@@ -1,0 +1,40 @@
+# Files a GitHub issue for every new piece of site feedback (https://kenshi.rcpd.cc feedback button).
+# The site's API hands out the issue title/body; this job creates the issue and reports its number back.
+name: Sync feedback to issues
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+concurrency: feedback-sync
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: File issues for new feedback
+        env:
+          SITE: https://kenshi.rcpd.cc
+          SYNC_TOKEN: ${{ secrets.FEEDBACK_SYNC_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          api() { curl -fsS -A feedback-sync -H "Authorization: Bearer $SYNC_TOKEN" "$@"; }
+          api "$SITE/api/sync" > pending.json
+          echo "pending: $(jq '.items | length' pending.json)"
+          jq -c '.items[]' pending.json | while read -r item; do
+            id=$(jq -r .id <<<"$item")
+            # If an earlier run filed the issue but failed to report back, reuse it instead of filing a duplicate.
+            url=$(gh issue list -R "$GITHUB_REPOSITORY" --state all --search "\"feedback:$id\" in:body" --json url --jq '.[0].url // empty')
+            if [ -z "$url" ]; then
+              url=$(gh issue create -R "$GITHUB_REPOSITORY" --label feedback \
+                --title "$(jq -r .title <<<"$item")" --body "$(jq -r .body <<<"$item")")
+            fi
+            jq -n --arg id "$id" --arg url "$url" '{id: $id, issue_url: $url, issue_number: ($url | split("/") | last | tonumber)}' \
+              | api -X POST -H 'content-type: application/json' --data @- "$SITE/api/sync" > /dev/null
+            echo "$id -> $url"
+          done

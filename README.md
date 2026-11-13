@@ -60,6 +60,9 @@ python3 scripts/build_extras.py raw/uniques.raw.json raw/meitou.raw.json raw/hui
 python3 scripts/add_wiki.py raw/huiji-titles.json
 # place bios: hand-written in scripts/place_bios.json (keyed by English name or id), attached as `bio`
 python3 scripts/add_bios.py
+# region bios (scripts/region_bios.json), factions (place owners + roaming squads from scripts/region_wiki.json,
+# named and styled by scripts/factions.json) and fauna; run last, build_regions.py rewrites regions.json
+python3 scripts/add_region_info.py
 # marker images and pointers exported from the game UI atlases: copy markers/* to public/icons/, cursors/* to public/cursors/
 # build also prerenders /p/<slug>/ and /r/<slug>/ pages, sitemap.xml, robots.txt, 404.html (scripts/prerender.ts)
 # og.jpg: 1200x630 screenshot of the home page (git-ignored, regenerate with Playwright if the look changes)

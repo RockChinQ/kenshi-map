@@ -1,0 +1,986 @@
+{
+ "The Crater": {
+  "squads": [
+   "Beak Thing",
+   "Swamp Raptor"
+  ],
+  "animals": [
+   "Beak Thing",
+   "Swamp Raptor"
+  ]
+ },
+ "Bast": {
+  "squads": [
+   "Cannibals",
+   "Rebel Farmers",
+   "Slaves",
+   "The Holy Nation",
+   "United Cities",
+   "Yabuta Outlaw",
+   "Wolves",
+   "Skimmers",
+   "No Faction",
+   "Drifters",
+   "Yabuta Outlaws"
+  ],
+  "animals": [
+   "Bonedog",
+   "Skimmer"
+  ]
+ },
+ "Skimsands": {
+  "squads": [
+   "Empire Peasants",
+   "Kral's Chosen",
+   "Mercenary Guild",
+   "Rebel Farmers",
+   "Rebel Swordsmen",
+   "Slave Traders",
+   "The Holy Nation",
+   "United Cities",
+   "Yabuta Outlaws",
+   "Skimmers",
+   "Manhunters",
+   "Wandering Assassin",
+   "Lost Drone",
+   "Samurai Rogue"
+  ],
+  "animals": [
+   "Skimmer"
+  ]
+ },
+ "Berserker Country": {
+  "squads": [
+   "Berserkers",
+   "Cannibals",
+   "Wild Bull"
+  ],
+  "animals": [
+   "Wild Bull"
+  ]
+ },
+ "Arm of Okran": {
+  "squads": [],
+  "animals": []
+ },
+ "Fog Islands": {
+  "squads": [
+   "Fogmen",
+   "Holy Nation Outlaws"
+  ],
+  "animals": []
+ },
+ "Vain": {
+  "squads": [
+   "Fogmen",
+   "Holy Nation Outlaws",
+   "Southern Hive",
+   "Western Hive",
+   "Gorillo",
+   "Bonedog",
+   "Garru",
+   "Wild Bull",
+   "Hive Caravan Boss"
+  ],
+  "animals": [
+   "Beak Thing",
+   "Bonedog",
+   "Garru",
+   "Gorillo",
+   "Wild Bull"
+  ]
+ },
+ "Shun": {
+  "squads": [
+   "Band of Bones",
+   "Tech Hunters",
+   "Skin Spider",
+   "Gorillo",
+   "Goat",
+   "Garru"
+  ],
+  "animals": [
+   "Garru",
+   "Goat",
+   "Gorillo",
+   "Skin Spider"
+  ]
+ },
+ "The Black Desert": {
+  "squads": [
+   "Black Desert Ninjas"
+  ],
+  "animals": []
+ },
+ "The Hook": {
+  "squads": [
+   "Band of Bones",
+   "Empire Peasants",
+   "Manhunters",
+   "Mercenary Captain",
+   "Noble Hunter",
+   "Rebel Farmers",
+   "Rebel Swordsmen",
+   "Slave Hunters",
+   "Slave Traders",
+   "Southern Hive",
+   "Traders Guild",
+   "United Cities",
+   "Yabuta Outlaws",
+   "Garru",
+   "Mercenary Guild",
+   "Shinobi Thieves",
+   "Goat",
+   "Bonedog",
+   "Lost Drone"
+  ],
+  "animals": [
+   "Bonedog",
+   "Garru",
+   "Goat"
+  ]
+ },
+ "Burning Forest": {
+  "squads": [
+   "Swamp Creatures",
+   "Wildlife"
+  ],
+  "animals": [
+   "Blood Spider",
+   "Swamp Raptor",
+   "Swamp Turtle"
+  ]
+ },
+ "Cheaters Run": {
+  "squads": [
+   "Fishmen",
+   "Old Machines"
+  ],
+  "animals": [
+   "Iron Spider"
+  ]
+ },
+ "Skinner's Roam": {
+  "squads": [
+   "Dust Bandits",
+   "Kral's Chosen",
+   "Holy Nation Outlaws",
+   "Shek Kingdom",
+   "Slave Traders",
+   "Starving Bandits",
+   "The Holy Nation",
+   "Western Hive",
+   "Wild Bull",
+   "Wolves"
+  ],
+  "animals": [
+   "Bonedog",
+   "Wild Bull"
+  ]
+ },
+ "Gut": {
+  "squads": [],
+  "animals": [
+   "Beak Thing"
+  ]
+ },
+ "Stenn Desert": {
+  "squads": [
+   "Berserkers",
+   "Kral's Chosen",
+   "Nomads",
+   "Shek Kingdom",
+   "Traders Guild",
+   "The Holy Nation",
+   "Western Hive",
+   "Bonedog",
+   "Spiders",
+   "Hiver Trader Caravan",
+   "No Faction"
+  ],
+  "animals": [
+   "Bonedog",
+   "Skin Spider"
+  ]
+ },
+ "The Crags": {
+  "squads": [
+   "Crab Raiders",
+   "Drifters",
+   "Reavers",
+   "Scavengers",
+   "Skeleton Bandits",
+   "Skin Bandits",
+   "Sniperbot",
+   "Southern Hive",
+   "Landbat",
+   "Black Gorillo"
+  ],
+  "animals": [
+   "Black Gorillo",
+   "Land Bat"
+  ]
+ },
+ "The Outlands": {
+  "squads": [
+   "Black Dog",
+   "Grass Pirates",
+   "Reavers",
+   "Samurai Rogue",
+   "Scavengers",
+   "Slave Traders",
+   "United Cities"
+  ],
+  "animals": []
+ },
+ "The Iron Trail": {
+  "squads": [
+   "Old Machines"
+  ],
+  "animals": []
+ },
+ "Stobe's Gamble": {
+  "squads": [
+   "Bounty Hunters",
+   "Crab Raiders",
+   "Drifters",
+   "Karate Drifter",
+   "Scavengers",
+   "Skeleton Bandits",
+   "Sniperbot",
+   "Southern Hive",
+   "Gorillos",
+   "Landbat",
+   "Goat",
+   "Leviathan",
+   "Old Machines"
+  ],
+  "animals": [
+   "Black Gorillo",
+   "Goat",
+   "Land Bat",
+   "Leviathan"
+  ]
+ },
+ "Howler Maze": {
+  "squads": [
+   "Empire Peasants",
+   "Crab"
+  ],
+  "animals": [
+   "Crab"
+  ]
+ },
+ "Arach": {
+  "squads": [
+   "Spiders"
+  ],
+  "animals": [
+   "Skin Spider"
+  ]
+ },
+ "Rebirth": {
+  "squads": [],
+  "animals": []
+ },
+ "Ashlands": {
+  "squads": [
+   "Skeleton Legion",
+   "Old Machines"
+  ],
+  "animals": [
+   "Cleanser Unit",
+   "Iron Spider"
+  ]
+ },
+ "Purple Sands": {
+  "squads": [
+   "Cannibals",
+   "Shrieking Bandits",
+   "Western Hive",
+   "Beak Thing",
+   "Garru"
+  ],
+  "animals": [
+   "Beak Thing",
+   "Garru"
+  ]
+ },
+ "Stormgap Coast": {
+  "squads": [
+   "Anti-Slavers",
+   "Black Dog",
+   "Bounty Hunters",
+   "Crab Raiders",
+   "Grass Pirates",
+   "Noble Hunter",
+   "Reavers",
+   "Rebel Farmers",
+   "Scavengers",
+   "Slave Traders",
+   "Tech Hunters",
+   "Traders Guild",
+   "United Cities",
+   "Gutters",
+   "Bonedog"
+  ],
+  "animals": [
+   "Beak Thing",
+   "Bonedog"
+  ]
+ },
+ "South Wetlands": {
+  "squads": [
+   "Red Sabres",
+   "Swamp Ninjas",
+   "Swamp Turtle",
+   "Swamp Creatures"
+  ],
+  "animals": [
+   "Blood Spider",
+   "Swamp Raptor",
+   "Swamp Turtle"
+  ]
+ },
+ "Sonorous Dark": {
+  "squads": [
+   "Skeleton Legion",
+   "Skin Bandits",
+   "Sniperbot",
+   "Old Machines",
+   "Gorillos",
+   "Southern Hive"
+  ],
+  "animals": [
+   "Black Gorillo",
+   "Iron Spider"
+  ]
+ },
+ "Spider Plains": {
+  "squads": [
+   "Band of Bones",
+   "Berserkers",
+   "Kral's Chosen",
+   "Shek Kingdom",
+   "Spiders",
+   "Wolves",
+   "Shinobi Thieves"
+  ],
+  "animals": [
+   "Bonedog",
+   "Skin Spider"
+  ]
+ },
+ "Floodlands": {
+  "squads": [
+   "Broken Skeleton",
+   "Iron Spider"
+  ],
+  "animals": [
+   "Iron Spider"
+  ]
+ },
+ "Grey Desert": {
+  "squads": [
+   "Black Desert Ninjas",
+   "Black Dog",
+   "Bloodraiders",
+   "Grayflayers",
+   "Nomads",
+   "Rebel Farmers",
+   "Slave Traders",
+   "Thrall Masters",
+   "Yabuta Outlaws",
+   "Traders Guild",
+   "Skimmer",
+   "Iron Spider"
+  ],
+  "animals": [
+   "Iron Spider",
+   "Skimmer"
+  ]
+ },
+ "Venge": {
+  "squads": [
+   "Thrall Masters",
+   "Beak Thing",
+   "Spiders",
+   "Iron Spider"
+  ],
+  "animals": [
+   "Beak Thing",
+   "Blood Spider",
+   "Iron Spider"
+  ]
+ },
+ "Dreg": {
+  "squads": [
+   "Cannibals",
+   "Fogmen",
+   "Holy Nation Outlaws",
+   "Nomads",
+   "Starving Bandits",
+   "The Holy Nation",
+   "Western Hive",
+   "Fogman",
+   "No Faction",
+   "Drifters"
+  ],
+  "animals": []
+ },
+ "Deadlands": {
+  "squads": [
+   "Old Machines"
+  ],
+  "animals": []
+ },
+ "Raptor Island": {
+  "squads": [],
+  "animals": []
+ },
+ "Darkfinger": {
+  "squads": [
+   "Cannibals",
+   "Bonedog",
+   "Goat"
+  ],
+  "animals": [
+   "Bonedog",
+   "Goat",
+   "River Raptor"
+  ]
+ },
+ "Greyshelf": {
+  "squads": [
+   "Southern Hive",
+   "Gorillos",
+   "Goat"
+  ],
+  "animals": []
+ },
+ "Forbidden Isle": {
+  "squads": [
+   "Tech Hunters",
+   "Iron Spider",
+   "Goat",
+   "Garru"
+  ],
+  "animals": [
+   "Garru",
+   "Goat",
+   "Iron Spider"
+  ]
+ },
+ "Okran's Pride": {
+  "squads": [
+   "Holy Nation Outlaws",
+   "Kral's Chosen",
+   "Mercenary Guild",
+   "Shek Kingdom",
+   "Southern Hive",
+   "Starving Bandits",
+   "The Holy Nation",
+   "Western Hive",
+   "Wolves",
+   "River Raptor",
+   "Drifters",
+   "No Faction"
+  ],
+  "animals": [
+   "Bonedog",
+   "River Raptor"
+  ]
+ },
+ "Flats Lagoon": {
+  "squads": [
+   "Black Dog",
+   "Nomads",
+   "Southern Hive",
+   "The Gorrillo Bandits",
+   "Western Hive",
+   "Wolves",
+   "Lost Drone",
+   "Landbat",
+   "Garru",
+   "Gutters"
+  ],
+  "animals": [
+   "Beak Thing",
+   "Bonedog",
+   "Boneyard Wolf",
+   "Garru",
+   "Land Bat"
+  ]
+ },
+ "Shem": {
+  "squads": [
+   "Band of Bones",
+   "Dust Bandits",
+   "Nomads",
+   "Starving Bandits",
+   "Tech Hunters",
+   "Beak Thing",
+   "Blood Spider",
+   "Garru",
+   "Slave Traders"
+  ],
+  "animals": [
+   "Beak Thing",
+   "Blood Spider",
+   "Garru"
+  ]
+ },
+ "Hidden Forest": {
+  "squads": [
+   "Cannibals",
+   "Cannibal Hunters",
+   "Flotsam Ninjas",
+   "Nomads",
+   "Wolves",
+   "Herbivore"
+  ],
+  "animals": [
+   "Bonedog",
+   "Goat",
+   "River Raptor"
+  ]
+ },
+ "Northern Coast": {
+  "squads": [
+   "Cannibals",
+   "Cannibal Hunters",
+   "Flotsam Ninjas",
+   "Nomads",
+   "Skeletons",
+   "Slave Traders",
+   "Starving Bandits",
+   "United Cities",
+   "Bonedog",
+   "Goat",
+   "Tech Hunters"
+  ],
+  "animals": [
+   "Bonedog",
+   "Goat",
+   "River Raptor"
+  ]
+ },
+ "Spine Canyon": {
+  "squads": [
+   "Bloodraiders",
+   "Sand Ninjas",
+   "Wolves"
+  ],
+  "animals": [
+   "Bonedog"
+  ]
+ },
+ "Fishman Island": {
+  "squads": [
+   "Gurgler",
+   "Fishmen",
+   "Crab"
+  ],
+  "animals": [
+   "Crab"
+  ]
+ },
+ "The Shrieking Forest": {
+  "squads": [
+   "Shrieking Bandits"
+  ],
+  "animals": []
+ },
+ "The Pits East": {
+  "squads": [
+   "Crab Raiders",
+   "Fishmen",
+   "Reavers",
+   "Scavengers",
+   "Crab"
+  ],
+  "animals": [
+   "Crab"
+  ]
+ },
+ "The Unwanted Zone": {
+  "squads": [
+   "Crabs",
+   "Gutters",
+   "Swamp Creatures",
+   "Garru",
+   "Goat",
+   "Gorillo",
+   "Swamp Turtle"
+  ],
+  "animals": [
+   "Beak Thing",
+   "Crab",
+   "Garru",
+   "Goat",
+   "Gorillo",
+   "Swamp Raptor",
+   "Swamp Turtle"
+  ]
+ },
+ "The Eye": {
+  "squads": [
+   "Bloodraiders",
+   "Grass Pirates",
+   "Manhunters",
+   "Reavers",
+   "Sand Ninjas",
+   "Slaves",
+   "Tech Hunters",
+   "Thrall Masters",
+   "United Cities",
+   "Western Hive",
+   "Wolves",
+   "Skimmer"
+  ],
+  "animals": [
+   "Bonedog",
+   "Skimmer"
+  ]
+ },
+ "Wend": {
+  "squads": [
+   "Holy Nation Robot"
+  ],
+  "animals": []
+ },
+ "Watcher's Rim": {
+  "squads": [
+   "Bounty Hunters",
+   "Mercenary Captain"
+  ],
+  "animals": []
+ },
+ "Iron Valleys": {
+  "squads": [
+   "Black Desert Ninjas",
+   "Old Machines",
+   "Skeletons",
+   "Tech Hunters",
+   "Skeleton Drifter"
+  ],
+  "animals": [
+   "Iron Spider"
+  ]
+ },
+ "Sniper Valley": {
+  "squads": [
+   "Crab Raiders",
+   "Scavengers",
+   "Sniperbot",
+   "Black Gorillo",
+   "Goat",
+   "Leviathan"
+  ],
+  "animals": [
+   "Black Gorillo",
+   "Goat",
+   "Leviathan"
+  ]
+ },
+ "High Bonefields": {
+  "squads": [
+   "Band of Bones",
+   "Skin Spider",
+   "Beak Thing",
+   "Wolves",
+   "Garru"
+  ],
+  "animals": [
+   "Beak Thing",
+   "Bonedog",
+   "Boneyard Wolf",
+   "Garru",
+   "Skin Spider"
+  ]
+ },
+ "Leviathan Coast": {
+  "squads": [
+   "Tech Hunters",
+   "Garru",
+   "Leviathan",
+   "Gutters",
+   "Raptors"
+  ],
+  "animals": [
+   "Beak Thing",
+   "Bonedog",
+   "Garru",
+   "Leviathan",
+   "Swamp Raptor",
+   "River Raptor"
+  ]
+ },
+ "Obedience": {
+  "squads": [
+   "Old Machines"
+  ],
+  "animals": [
+   "Iron Spider"
+  ]
+ },
+ "Cannibal Plains": {
+  "squads": [
+   "Berserkers",
+   "Cannibals",
+   "Cannibal Hunters",
+   "Holy Nation Outlaws",
+   "Shrieking Bandits",
+   "Tech Hunters",
+   "Beak Thing"
+  ],
+  "animals": [
+   "Beak Thing"
+  ]
+ },
+ "Greenbeach": {
+  "squads": [
+   "Crab Raiders",
+   "Reavers",
+   "Crab",
+   "Beak Thing"
+  ],
+  "animals": [
+   "Beak Thing",
+   "Crab"
+  ]
+ },
+ "The Great Desert": {
+  "squads": [
+   "Anti-Slavers",
+   "Bounty Hunters",
+   "Cannibals",
+   "Empire Peasants",
+   "Manhunters",
+   "Mercenary Guild",
+   "Noble Hunter",
+   "Nomads",
+   "Rebel Farmers",
+   "Rebel Swordsmen",
+   "Sand Ninjas",
+   "Slave Hunters",
+   "Slave Traders",
+   "Traders Guild",
+   "Tech Hunters",
+   "United Cities",
+   "United Heroes League",
+   "Vagrants",
+   "Western Hive",
+   "Yabuta Outlaws",
+   "Skimmers",
+   "Garru",
+   "Nomad Animal Trader",
+   "Shinobi Thieves",
+   "No Faction",
+   "Drifter",
+   "Samurai Rogue"
+  ],
+  "animals": [
+   "Garru",
+   "Skimmer"
+  ]
+ },
+ "Royal Valley": {
+  "squads": [
+   "Southern Hive",
+   "Goat"
+  ],
+  "animals": [
+   "Goat"
+  ]
+ },
+ "The Pits": {
+  "squads": [
+   "Crab Raiders",
+   "Fishmen",
+   "Scavengers",
+   "Skeleton Bandits",
+   "Skin Bandits",
+   "Sniperbot",
+   "Tech Hunters",
+   "Land Bat",
+   "Drifters"
+  ],
+  "animals": [
+   "Land Bat"
+  ]
+ },
+ "Stobe's Garden": {
+  "squads": [
+   "Black Dragon Ninjas",
+   "Bounty Hunters",
+   "Crab Raiders",
+   "Reavers",
+   "Scavengers",
+   "Skeleton Bandits",
+   "Land Bats",
+   "Black Gorillo",
+   "Southern Hive"
+  ],
+  "animals": [
+   "Black Gorillo",
+   "Land Bat"
+  ]
+ },
+ "Okran's Valley": {
+  "squads": [
+   "Cannibals",
+   "Flotsam Ninjas",
+   "Kral's Chosen",
+   "Holy Nation Outlaws",
+   "Skeletons",
+   "Starving Bandits",
+   "The Holy Nation",
+   "Western Hive",
+   "Bonedog",
+   "No Faction",
+   "Drifter"
+  ],
+  "animals": [
+   "Bonedog"
+  ]
+ },
+ "Border Zone": {
+  "squads": [
+   "Dust Bandits",
+   "Holy Nation Outlaws",
+   "Kral's Chosen",
+   "Nomads",
+   "Shek Kingdom",
+   "Slave Traders",
+   "Southern Hive",
+   "The Holy Nation",
+   "Western Hive",
+   "Starving Bandits",
+   "Garru",
+   "Goat",
+   "Bonedog",
+   "Tech Hunters",
+   "Shinobi Thieves"
+  ],
+  "animals": [
+   "Bonedog",
+   "Garru",
+   "Goat"
+  ]
+ },
+ "Sinkuun": {
+  "squads": [
+   "Cannibal Hunters",
+   "Nomads",
+   "Rebel Farmers",
+   "Rebel Swordsmen",
+   "United Cities",
+   "Western Hive",
+   "Yabuta Outlaws",
+   "Skimmers",
+   "Goat",
+   "Slave Traders"
+  ],
+  "animals": [
+   "Goat",
+   "Skimmer"
+  ]
+ },
+ "The Grid": {
+  "squads": [],
+  "animals": []
+ },
+ "Heng": {
+  "squads": [
+   "Anti-Slavers",
+   "Bounty Hunters",
+   "Crab Raiders",
+   "Empire Peasants",
+   "Manhunters",
+   "Mercenary Guild",
+   "Nomads",
+   "Reavers",
+   "Rebel Farmers",
+   "Rebel Swordsmen",
+   "Slave Hunters",
+   "Slave Traders",
+   "Tech Hunters",
+   "Traders Guild",
+   "United Cities",
+   "United Heroes League",
+   "Vagrants",
+   "Western Hive",
+   "Yabuta Outlaws",
+   "Skimmer",
+   "Garru",
+   "Drifters",
+   "Wandering Assassin",
+   "No Faction"
+  ],
+  "animals": [
+   "Bonedog",
+   "Garru",
+   "Skimmer"
+  ]
+ },
+ "Okran's Gulf": {
+  "squads": [
+   "Berserkers",
+   "Flotsam Ninjas",
+   "Fogmen",
+   "Holy Nation Outlaws",
+   "Kral's Chosen",
+   "Mercenary Guild",
+   "Nomads",
+   "Shek Kingdom",
+   "Southern Hive",
+   "The Holy Nation",
+   "Starving Bandits",
+   "Herbivore",
+   "Drifters",
+   "No Faction"
+  ],
+  "animals": [
+   "Bonedog",
+   "Wild Bull"
+  ]
+ },
+ "The Swamp": {
+  "squads": [
+   "Band of Bones",
+   "Red Sabres",
+   "Southern Hive",
+   "Swamp Ninjas",
+   "Western Hive",
+   "Swamp Turtle",
+   "Blood Spider",
+   "Wandering Assassin"
+  ],
+  "animals": [
+   "Blood Spider",
+   "Swamp Raptor",
+   "Swamp Turtle"
+  ]
+ },
+ "Bonefields": {
+  "squads": [
+   "Band of Bones",
+   "Southern Hive",
+   "The Gorrillo Bandits",
+   "Gutters",
+   "Spiders",
+   "Wolves",
+   "Wildlife",
+   "Herbivore"
+  ],
+  "animals": [
+   "Beak Thing",
+   "Bonedog",
+   "Boneyard Wolf",
+   "Garru",
+   "Leviathan",
+   "Skin Spider"
+  ]
+ }
+}

@@ -25,6 +25,18 @@ h1 { font-size: 16px; margin: 0; flex: 1; min-width: 0; color: var(--accent); le
 #detail .tags span { display: inline-block; border: 1px solid var(--line); border-radius: 3px; padding: 0 6px; margin-right: 6px; font-size: 12px; }
 #detail .desc { white-space: pre-wrap; }
 #detail .bio { margin: 4px 0 8px; font-size: 13px; line-height: 1.6; }
+#detail { max-height: calc(100% - 76px); overflow-y: auto; box-sizing: border-box; }
+.emblem { flex: none; vertical-align: middle; }
+#detail .fac-rows { list-style: none; margin: 6px 0 4px; padding: 0; display: grid; gap: 4px; }
+#detail .fac-rows li { display: flex; align-items: center; gap: 9px; padding: 5px 8px; border: 1px solid var(--line); border-radius: 5px; background: rgba(255,255,255,.025); }
+#detail .fac-rows li > span { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.25; }
+#detail .fac-rows b { font-size: 13.5px; font-weight: 600; }
+#detail .fac-rows small { font-size: 10.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#detail .fac-rows em { flex: none; font-style: normal; font-size: 11px; color: var(--muted); }
+#detail .fac-chips { margin: 6px 0 4px; display: flex; flex-wrap: wrap; gap: 5px; }
+#detail .fac-chips span { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px 2px 4px; border: 1px solid var(--line); border-radius: 999px; font-size: 12px; }
+#detail .fauna { margin: 6px 0 4px; display: flex; flex-wrap: wrap; gap: 5px; }
+#detail .fauna span { padding: 1px 7px; border-radius: 3px; background: rgba(255,255,255,.06); font-size: 12px; color: var(--muted); }
 #detail .coord { color: var(--muted); font-size: 12px; }
 #detail .close { position: absolute; right: 8px; top: 4px; background: none; border: 0; color: var(--muted); font-size: 20px; cursor: pointer; }
 #detail .actions { display: flex; gap: 8px; }
@@ -38,7 +50,7 @@ h1 { font-size: 16px; margin: 0; flex: 1; min-width: 0; color: var(--accent); le
 .sw { display: inline-block; width: 20px; height: 20px; flex: none; filter: drop-shadow(0 0 1px #000); }
 .sw-region { display: inline-block; width: 14px; height: 10px; flex: none; border: 1px solid #f1e2bf; background: rgba(241,226,191,.15); }
 #detail .region-link { display: inline-block; border: 1px solid var(--accent); border-radius: 3px; padding: 0 6px; font-size: 12px; color: var(--accent); text-decoration: none; }
-#detail .region-places { max-height: 50vh; overflow: auto; margin-top: 6px; }
+#detail .region-places { margin-top: 6px; }
 #detail .tags span.acid { border-color: #b8d433; color: #d4ec5a; }
 
 #map { position: relative; }

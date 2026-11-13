@@ -4,6 +4,7 @@
  */
 import type { I18n, Place } from './types.ts';
 import { CATEGORIES, categoryOf, type Category } from './categories.ts';
+import { emblem, type RegionFaction } from './factions.ts';
 
 export const SITE = 'https://kenshi.rcpd.cc';
 export const SITE_NAME = 'Kenshi 中文互动地图';
@@ -15,6 +16,10 @@ export interface RegionInfo {
   name: I18n;
   acid?: ('ground' | 'water')[];
   wiki?: string;
+  /** Hand-written profile, factions holding places / roaming here, and fauna (scripts/add_region_info.py). */
+  bio?: string;
+  factions?: RegionFaction[];
+  animals?: string[];
 }
 
 export interface ContentCtx {
@@ -140,7 +145,26 @@ export function regionCardHtml(r: RegionInfo, ctx: ContentCtx) {
       ${r.name.zh && r.name.en ? `<p class="en">${esc(r.name.en)}</p>` : ''}
       <p class="tags"><span>区域</span><span>${inside.length} 个地点</span>${acid}</p>
       ${wikiLink(r.wiki)}
+      ${r.bio ? `<h3>区域简介</h3><p class="desc bio">${esc(r.bio)}</p>` : ''}
+      ${regionFactionsHtml(r)}
+      ${r.animals?.length ? `<h3>野生动物</h3><p class="fauna">${r.animals.map((a) => `<span>${esc(a)}</span>`).join('')}</p>` : ''}
+      ${inside.length ? `<h3>区域内的地点（${inside.length}）</h3>` : ''}
       <div class="region-places">${inside.map((p) => placeLink(p, ctx)).join('')}</div>`;
+}
+
+/** Factions of a region: the ones holding places as rows (emblem, name, how many), the roaming ones as chips. */
+function regionFactionsHtml(r: RegionInfo) {
+  const all = r.factions ?? [];
+  if (!all.length) return '';
+  const held = all.filter((f) => f.places);
+  const roam = all.filter((f) => !f.places);
+  const row = (f: RegionFaction) =>
+    `<li title="${esc(f.en)}">${emblem(f, 26)}<span><b style="color:${f.color}">${esc(f.zh)}</b><small>${esc(f.en)}</small></span><em>${f.places} 处地点</em></li>`;
+  const chip = (f: RegionFaction) => `<span title="${esc(f.en)}">${emblem(f, 18)}${esc(f.zh)}</span>`;
+  return (
+    (held.length ? `<h3>据点势力（${held.length}）</h3><ul class="fac-rows">${held.map(row).join('')}</ul>` : '') +
+    (roam.length ? `<h3>游荡势力（${roam.length}）</h3><p class="fac-chips">${roam.map(chip).join('')}</p>` : '')
+  );
 }
 
 /** The side panel's default list (no search): every region and town, as plain links. */
@@ -293,7 +317,8 @@ export function regionMeta(r: RegionInfo, ctx: ContentCtx): PageMeta {
   const towns = inside.filter((p) => p.type === 2).map((p) => plain(p.name));
   const en = r.name.zh && r.name.en ? `（${r.name.en}）` : '';
   const acid = r.acid?.length ? `，有${r.acid.map((a) => (a === 'ground' ? '酸性地面' : '酸性水域')).join('和')}` : '';
-  const desc = `${regionTitle(r)}${en}是 Kenshi 的一个区域，共 ${inside.length} 个地点${towns.length ? `，包括${towns.slice(0, 4).join('、')}` : ''}${acid}。查看区域范围与地点分布。`;
+  const facs = (r.factions ?? []).slice(0, 5).map((f) => f.zh);
+  const desc = `${regionTitle(r)}${en}是 Kenshi 的一个区域，共 ${inside.length} 个地点${towns.length ? `，包括${towns.slice(0, 4).join('、')}` : ''}${acid}。${r.bio ?? ''}${facs.length ? `活跃势力：${facs.join('、')}。` : ''}查看区域范围与地点分布。`;
   return { path: regionPath(r), title: `${regionTitle(r)}${en} - Kenshi 区域地图 | ${SITE_NAME}`, description: desc };
 }
 

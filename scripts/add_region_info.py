@@ -5,14 +5,17 @@ usage: add_region_info.py   (run after build_regions.py, add_wiki.py and add_bio
 - scripts/region_bios.json: hand-written zh text keyed by the region's English name.
 - factions: owners of the places inside the region (places.json, `places` = how many they hold) plus the squads
   that roam it (`roam`), taken from the wiki zone pages in scripts/region_wiki.json. Only names listed in
-  scripts/factions.json count; it also carries the zh name and the emblem kind/colour the card draws.
+  scripts/factions.json count; it also carries the zh name. `img` is the faction's picture in public/factions/
+  (cropped from the Kenshi wiki image named in scripts/faction_images.json: in-game banners where the game has
+  one, otherwise a screenshot of its members).
   Ruin "owners" (Ancient Ruins, Second Empire, ...) are not listed there on purpose.
 """
-import json
+import json, os
 
 table = json.load(open('scripts/factions.json', encoding='utf-8'))
 bios = json.load(open('scripts/region_bios.json', encoding='utf-8'))
 wiki = json.load(open('scripts/region_wiki.json', encoding='utf-8'))
+images = json.load(open('scripts/faction_images.json', encoding='utf-8'))
 places = json.load(open('public/data/places.json', encoding='utf-8'))['places']
 
 
@@ -53,7 +56,10 @@ for r in data['regions']:
     facs = []
     for n in names:
         t = table['factions'][n]
-        f = {'en': n, 'zh': t['zh'], 'kind': t['kind'], 'color': t['color']}
+        f = {'en': n, 'zh': t['zh']}
+        img = images.get(n, {}).get('img')
+        if img and os.path.exists(f'public/factions/{img}.webp'):
+            f['img'] = img
         if n in held:
             f['places'] = held[n]
         if n in roam:

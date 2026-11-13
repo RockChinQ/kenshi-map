@@ -1,0 +1,238 @@
+{
+ "United Cities": {
+  "img": "united-cities",
+  "file": "Empire Banner.PNG"
+ },
+ "The Holy Nation": {
+  "img": "the-holy-nation",
+  "file": "THNBanner.png"
+ },
+ "Shek Kingdom": {
+  "img": "shek-kingdom",
+  "file": "shek_logo.png"
+ },
+ "Traders Guild": {
+  "img": "traders-guild",
+  "file": "TradeGuildLogo.png"
+ },
+ "Slave Traders": {
+  "img": "slave-traders",
+  "file": "Slavery.jpg"
+ },
+ "Manhunters": {
+  "img": "manhunters",
+  "file": "Manhunters.png"
+ },
+ "Slave Hunters": {
+  "img": "slave-hunters",
+  "file": "SlaveParty.png"
+ },
+ "Empire Peasants": {
+  "img": "empire-peasants",
+  "file": "EmpirePeas.png"
+ },
+ "Deadcat": {
+  "img": "deadcat",
+  "file": "Deadcat fisherman.png"
+ },
+ "Swampers": {
+  "img": "swampers",
+  "file": "Swamp banner.png"
+ },
+ "Mongrel": {
+  "img": "mongrel",
+  "file": "Arc.png"
+ },
+ "Tech Hunters": {
+  "img": "tech-hunters",
+  "file": "Tech_hunter.png"
+ },
+ "Machinists": {
+  "img": "machinists",
+  "file": "Machinist.png"
+ },
+ "Anti-Slavers": {
+  "img": "anti-slavers",
+  "file": "Tinfist.png"
+ },
+ "Rebel Farmers": {
+  "img": "rebel-farmers",
+  "file": "Rebs.png"
+ },
+ "Holy Nation Outlaws": {
+  "img": "holy-nation-outlaws",
+  "file": "HNOSquat.jpg"
+ },
+ "Yabuta Outlaws": {
+  "img": "yabuta-outlaws",
+  "file": "Yabuta.jpg"
+ },
+ "Rebel Swordsmen": {
+  "img": "rebel-swordsmen",
+  "file": "RebelSwordsman.png"
+ },
+ "Flotsam Ninjas": {
+  "img": "flotsam-ninjas",
+  "file": "Floaters.png"
+ },
+ "Sand ninjas": {
+  "img": "sand-ninjas",
+  "file": "Sand-Ninja-Oni-Profile.jpg"
+ },
+ "Black Dragon Ninjas": {
+  "img": "black-dragon-ninjas",
+  "file": "Dimak.jpg"
+ },
+ "Swamp Ninjas": {
+  "img": "swamp-ninjas",
+  "file": "Swamp Ninja.png"
+ },
+ "Western Hive": {
+  "img": "western-hive",
+  "file": "Western Hive 3.png"
+ },
+ "Southern Hive": {
+  "img": "southern-hive",
+  "file": "Southern HIve 6.png"
+ },
+ "Fogmen": {
+  "img": "fogmen",
+  "file": "Foggers.png"
+ },
+ "Skeletons": {
+  "img": "skeletons",
+  "file": "S2.png"
+ },
+ "Skeleton Legion": {
+  "img": "skeleton-legion",
+  "file": "Skeleton Legion.jpg"
+ },
+ "Second Empire Exile": {
+  "img": "second-empire-exile",
+  "file": "20181228090956_1.jpg"
+ },
+ "Old Machines": {
+  "img": "old-machines",
+  "file": "Iron Spider.png"
+ },
+ "Skeleton Bandits": {
+  "img": "skeleton-bandits",
+  "file": "SB Skeleton Bandit.jpg"
+ },
+ "Thrall Masters": {
+  "img": "thrall-masters",
+  "file": "20181228022210_1.jpg"
+ },
+ "Skin Bandits": {
+  "img": "skin-bandits",
+  "file": "Skin-Bandits.jpg"
+ },
+ "Dust Bandits": {
+  "img": "dust-bandits",
+  "file": "Bandit Rage.png"
+ },
+ "Starving Bandits": {
+  "img": "starving-bandits",
+  "file": "HungryHungry.png"
+ },
+ "Reavers": {
+  "img": "reavers",
+  "file": "Reaver Ironclad.jpg"
+ },
+ "Crab Raiders": {
+  "img": "crab-raiders",
+  "file": "CrabRaider.png"
+ },
+ "Kral's Chosen": {
+  "img": "kral-s-chosen",
+  "file": "Kral's Chosen.PNG"
+ },
+ "Berserkers": {
+  "img": "berserkers",
+  "file": "Berserkers2.JPG"
+ },
+ "Band of Bones": {
+  "img": "band-of-bones",
+  "file": "Band of Bones.jpg"
+ },
+ "Black Dog": {
+  "img": "black-dog",
+  "file": "Black Dog HQ.jpg"
+ },
+ "Scavengers": {
+  "img": "scavengers",
+  "file": "Scavenger patrol.png"
+ },
+ "The Gorrillo Bandits": {
+  "img": "the-gorrillo-bandits",
+  "file": "Gorillo Bandit.jpg"
+ },
+ "Grass Pirates": {
+  "img": "grass-pirates",
+  "file": "Grass pirates.png"
+ },
+ "Shrieking Bandits": {
+  "img": "shrieking-bandits",
+  "file": "Three Shrieking Bandits.jpg"
+ },
+ "Bloodraiders": {
+  "img": "bloodraiders",
+  "file": "Bloodraiders2.png"
+ },
+ "Red Sabres": {
+  "img": "red-sabres",
+  "file": "Red Sabre 6.png"
+ },
+ "Hounds": {
+  "img": "hounds",
+  "file": "Hound.png"
+ },
+ "Grayflayers": {
+  "img": "grayflayers",
+  "file": "Grayflayer.png"
+ },
+ "Stone Rats": {
+  "img": "stone-rats",
+  "file": "Stone Rats 7.png"
+ },
+ "Blackshifters": {
+  "img": "blackshifters",
+  "file": "Twinblade 3.png"
+ },
+ "United Heroes League": {
+  "img": "united-heroes-league",
+  "file": "Empire Heroes League.jpg"
+ },
+ "Mercenary Guild": {
+  "img": "mercenary-guild",
+  "file": "Mercenary.png"
+ },
+ "Bounty Hunters": {
+  "img": "bounty-hunters",
+  "file": "BountyHunter.jpg"
+ },
+ "Cannibal Hunters": {
+  "img": "cannibal-hunters",
+  "file": "CanHunters.png"
+ },
+ "Cannibals": {
+  "img": "cannibals",
+  "file": "LoFi Cannibal capture.jpg"
+ },
+ "Preacher Cult": {
+  "img": "preacher-cult",
+  "file": "CultFarmer.jpg"
+ },
+ "Fishmen": {
+  "img": "fishmen",
+  "file": "Fishmen 3.png"
+ },
+ "Nomads": {
+  "img": "nomads",
+  "file": "Nomads.png"
+ },
+ "Drifters": {
+  "img": "drifters",
+  "file": "TechHunterRuins.png"
+ }
+}

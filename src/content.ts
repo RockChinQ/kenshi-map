@@ -4,7 +4,7 @@
  */
 import type { I18n, Place } from './types.ts';
 import { CATEGORIES, categoryOf, type Category } from './categories.ts';
-import { emblem, type RegionFaction } from './factions.ts';
+import { factionIcon, type RegionFaction } from './factions.ts';
 
 export const SITE = 'https://kenshi.rcpd.cc';
 export const SITE_NAME = 'Kenshi 中文互动地图';
@@ -152,15 +152,15 @@ export function regionCardHtml(r: RegionInfo, ctx: ContentCtx) {
       <div class="region-places">${inside.map((p) => placeLink(p, ctx)).join('')}</div>`;
 }
 
-/** Factions of a region: the ones holding places as rows (emblem, name, how many), the roaming ones as chips. */
+/** Factions of a region: the ones holding places as rows (picture, name, how many), the roaming ones as chips. */
 function regionFactionsHtml(r: RegionInfo) {
   const all = r.factions ?? [];
   if (!all.length) return '';
   const held = all.filter((f) => f.places);
   const roam = all.filter((f) => !f.places);
   const row = (f: RegionFaction) =>
-    `<li title="${esc(f.en)}">${emblem(f, 26)}<span><b style="color:${f.color}">${esc(f.zh)}</b><small>${esc(f.en)}</small></span><em>${f.places} 处地点</em></li>`;
-  const chip = (f: RegionFaction) => `<span title="${esc(f.en)}">${emblem(f, 18)}${esc(f.zh)}</span>`;
+    `<li title="${esc(f.en)}">${factionIcon(f, 40)}<span><b>${esc(f.zh)}</b><small>${esc(f.en)}</small></span><em>${f.places} 处地点</em></li>`;
+  const chip = (f: RegionFaction) => `<span title="${esc(f.en)}">${factionIcon(f, 24)}${esc(f.zh)}</span>`;
   return (
     (held.length ? `<h3>据点势力（${held.length}）</h3><ul class="fac-rows">${held.map(row).join('')}</ul>` : '') +
     (roam.length ? `<h3>游荡势力（${roam.length}）</h3><p class="fac-chips">${roam.map(chip).join('')}</p>` : '')

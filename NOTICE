@@ -3,3 +3,7 @@ marker images, mouse pointers, names, translations and all other game content ar
 © Lo-Fi Games. They are not included in this repository except for the place, region,
 character and weapon names/positions in public/data/, which are extracted from the
 game for this non-commercial fan map.
+
+Faction pictures in public/factions/ are cropped from images on the Kenshi Wiki (kenshi.fandom.com), licensed
+CC BY-SA; they show in-game banners and screenshots of Kenshi, © Lo-Fi Games. The source file of each picture is
+listed in scripts/faction_images.json.

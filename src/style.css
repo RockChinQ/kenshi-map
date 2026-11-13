@@ -24,6 +24,7 @@ h1 { font-size: 16px; margin: 0; flex: 1; min-width: 0; color: var(--accent); le
 #detail .en { margin: 0 0 6px; color: var(--muted); }
 #detail .tags span { display: inline-block; border: 1px solid var(--line); border-radius: 3px; padding: 0 6px; margin-right: 6px; font-size: 12px; }
 #detail .desc { white-space: pre-wrap; }
+#detail .bio { margin: 4px 0 8px; font-size: 13px; line-height: 1.6; }
 #detail .coord { color: var(--muted); font-size: 12px; }
 #detail .close { position: absolute; right: 8px; top: 4px; background: none; border: 0; color: var(--muted); font-size: 20px; cursor: pointer; }
 #detail .actions { display: flex; gap: 8px; }

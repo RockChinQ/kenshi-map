@@ -51,6 +51,8 @@ export interface UniqueChar {
   replacement?: I18n[];
   meitou?: string[];
   wiki?: string;
+  /** Short hand-written profile (scripts/char_bios.json). */
+  bio?: string;
 }
 
 export interface MeitouWeapon {
@@ -209,6 +211,7 @@ export function charCardHtml(c: UniqueChar, ctx: ContentCtx) {
       ${c.name.zh ? `<p class="en">${esc(c.name.en)}</p>` : ''}
       <p class="tags">${tags}</p>
       ${wikiLink(c.wiki)}
+      ${c.bio ? `<h3>人物简介</h3><p class="desc bio">${esc(c.bio)}</p>` : ''}
       ${weapons.length ? `<h3>携带的铭物武器</h3><div class="region-places">${weapons.map((m) => meitouLink(m, ctx)).join('')}</div>` : ''}
       ${locationsHtml(c.locations, ctx)}
       ${c.replacement?.length ? `<p class="loc">死亡后由 ${c.replacement.map((r) => zh(r)).join('、')} 替补出现</p>` : ''}
@@ -244,7 +247,7 @@ export function placeExtrasHtml(p: Place, ctx: ContentCtx) {
 export function charMeta(c: UniqueChar, ctx: ContentCtx): PageMeta {
   const en = c.name.zh ? `（${c.name.en}）` : '';
   const where = [...new Set(c.locations.filter((l) => l.fixed && l.place).map((l) => plain(ctx.places.find((p) => p.id === l.place)?.name)))].filter(Boolean);
-  const desc = `Kenshi 主要角色${plain(c.name)}${en}${c.races[0] ? `，${plain(c.races[0])}` : ''}${c.factions[0] ? `，${plain(c.factions[0])}` : ''}${c.recruitable ? '，可招募' : ''}。${where.length ? `出现在${where.slice(0, 4).join('、')}。` : ''}查看位置、携带武器与灰机 wiki 资料。`;
+  const desc = `Kenshi 主要角色${plain(c.name)}${en}${c.races[0] ? `，${plain(c.races[0])}` : ''}${c.factions[0] ? `，${plain(c.factions[0])}` : ''}${c.recruitable ? '，可招募' : ''}。${where.length ? `出现在${where.slice(0, 4).join('、')}。` : ''}${c.bio ?? ''}查看位置、携带武器与灰机 wiki 资料。`;
   return { path: charPath(c), title: `${plain(c.name)}${en}在哪 - Kenshi 角色位置 | ${SITE_NAME}`, description: desc };
 }
 

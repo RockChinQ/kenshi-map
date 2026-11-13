@@ -2,6 +2,7 @@
 """Unique characters and Meitou-grade weapons (extracted from the game data) -> public/data/extras.json.
 
 usage: build_extras.py raw/uniques.raw.json raw/meitou.raw.json raw/huiji-titles.json
+Character bios are hand-written in scripts/char_bios.json (id -> zh text); the game data has no such field.
 Locations reference places.json ids (towns.raw ids). A location is "fixed" when the character leads or is a set member
 of a non-conditional template (town residents, a bar's own squad, a placed building, a prison); "possible" when it only sits in a
 random recruit pool (`choosefrom list`) or behind world-state conditions; campaigns have no place.
@@ -14,6 +15,7 @@ FIXED_ROLES = {'leader', 'squad', 'squad2'}
 uniques = json.load(open(sys.argv[1], encoding='utf-8'))['uniques']
 meitou = json.load(open(sys.argv[2], encoding='utf-8'))
 titles = set(json.load(open(sys.argv[3], encoding='utf-8')))
+bios = json.load(open('scripts/char_bios.json', encoding='utf-8'))
 places = {p['id']: p for p in json.load(open('public/data/places.json', encoding='utf-8'))['places']}
 
 
@@ -80,6 +82,8 @@ for u in uniques:
     w = wiki(name)
     if w:
         c['wiki'] = w
+    if bios.get(u['id']):
+        c['bio'] = bios[u['id']]
     chars.append(c)
 by_char = {c['id']: c for c in chars}
 
@@ -100,5 +104,5 @@ for s in meitou['sources']:
 out = {'grade': i18n(meitou['grade']), 'manufacturer': i18n(meitou['manufacturer']), 'characters': chars, 'meitou': weapons}
 json.dump(out, open('public/data/extras.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 fixed = sum(any(l['fixed'] and ('place' in l or 'x' in l) for l in c['locations']) for c in chars)
-print(f"{len(chars)} characters ({fixed} with a fixed place, {sum('wiki' in c for c in chars)} wiki), "
+print(f"{len(chars)} characters ({fixed} with a fixed place, {sum('wiki' in c for c in chars)} wiki, {sum('bio' in c for c in chars)} bio), "
       f"{len(weapons)} meitou ({sum(any('place' in l for l in w['locations']) for w in weapons)} placed, {sum('wiki' in w for w in weapons)} wiki)")

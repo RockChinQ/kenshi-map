@@ -12,6 +12,8 @@ export interface Place {
   region?: string;
   /** Page title on kenshi.huijiwiki.com, when one exists. */
   wiki?: string;
+  /** Short hand-written profile (scripts/place_bios.json). */
+  bio?: string;
 }
 
 export interface MapMeta {

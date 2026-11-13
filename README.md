@@ -58,6 +58,8 @@ python3 scripts/build_extras.py raw/uniques.raw.json raw/meitou.raw.json raw/hui
 # 灰机 wiki links: page titles via a real browser (Cloudflare challenge), then tag (run after build_regions)
 # xvfb-run node tools/huiji/dump-titles.mjs  (needs playwright + /usr/bin/chromium; writes huiji-titles.json)
 python3 scripts/add_wiki.py raw/huiji-titles.json
+# place bios: hand-written in scripts/place_bios.json (keyed by English name or id), attached as `bio`
+python3 scripts/add_bios.py
 # marker images and pointers exported from the game UI atlases: copy markers/* to public/icons/, cursors/* to public/cursors/
 # build also prerenders /p/<slug>/ and /r/<slug>/ pages, sitemap.xml, robots.txt, 404.html (scripts/prerender.ts)
 # og.jpg: 1200x630 screenshot of the home page (git-ignored, regenerate with Playwright if the look changes)

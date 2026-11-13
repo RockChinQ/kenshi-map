@@ -120,6 +120,7 @@ export function placeCardHtml(p: Place, ctx: ContentCtx) {
       <p class="tags"><span style="border-color:${cat?.color}">${cat?.label ?? '未知'}</span>${p.faction ? `<span>${zh(p.faction)}</span>` : ''}${region ? regionLink(region, 'region-link') : ''}</p>
       ${wikiLink(p.wiki)}
       ${p.desc ? `<p class="desc">${zh(p.desc)}</p>` : ''}
+      ${p.bio ? `<h3>地点简介</h3><p class="desc bio">${esc(p.bio)}</p>` : ''}
       <p class="coord">坐标 X ${Math.round(p.x)} · Z ${Math.round(p.z)}</p>
       <div class="actions">
         <button class="explore">${explored ? '✓ 已探索' : '标记为已探索'}</button>
@@ -282,7 +283,7 @@ export function placeMeta(p: Place, ctx: ContentCtx): PageMeta {
     `${plain(p.name)}${en}是 Kenshi 中的${cat?.label ?? '地点'}`,
     region ? `，位于${regionTitle(region)}` : '',
     p.faction ? `，所属势力${plain(p.faction)}` : '',
-    '。在 Kenshi 中文互动地图上查看它的位置、坐标、附近地点和灰机 wiki 资料。',
+    `。${p.bio ?? ''}在 Kenshi 中文互动地图上查看它的位置、坐标、附近地点和灰机 wiki 资料。`,
   ];
   return { path: placePath(p), title: `${plain(p.name)}${en}位置 - Kenshi ${cat?.label ?? '地点'} | ${SITE_NAME}`, description: parts.join('') };
 }
